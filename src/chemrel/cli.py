@@ -1,0 +1,287 @@
+import typer
+import os
+import chemrel.cli_constants as constants
+import chemrel.functions.auxiliary as aux
+
+app = typer.Typer()
+
+workflow_app = typer.Typer()
+app.add_typer(workflow_app, name="workflow")
+
+sc_app = typer.Typer()
+app.add_typer(sc_app, name="sc")
+
+rel_app = typer.Typer()
+app.add_typer(rel_app, name="rel")
+
+aux_app = typer.Typer()
+app.add_typer(aux_app, name="aux")
+
+
+# App commands
+
+@app.command("test")
+def test():
+    os.system("python --version")
+
+
+@app.command("clean")
+def clean():
+    """
+    Removes intermediate files to start data preparation and training from a clean slate.
+    """
+    os.system("rm -rf reldata/*")
+    os.system("rm -rf reltraining/*")
+    os.system("rm -rf sctraining/*")
+
+
+@app.command("predict")
+def predict():
+    print("Command not available.")
+
+
+# Workflow commands
+
+@workflow_app.command("all-gpu")
+def workflow_all_gpu():
+    """
+    Executes a series of commands to process data, train, and test the span categorization (sc) and relation
+    extraction (rel) models using the GPU.
+    """
+    print("Running `sc process-data`...")
+    sc_process_data()
+    print("Running `sc train-cpu`...")
+    sc_train_cpu()
+    print("Running `sc tl-cpu`...")
+    sc_tl_cpu()
+    print("Running `sc test`...")
+    sc_test()
+    print("Running `rel process-data`...")
+    rel_process_data()
+    print("Running `rel train-cpu`...")
+    rel_train_cpu()
+    print("Running `rel tl-cpu`...")
+    rel_tl_cpu()
+    print("Running `rel test`...")
+    rel_test()
+    print("Running `clean`...")
+    clean()
+    print("Complete.")
+
+
+@workflow_app.command("all-cpu")
+def workflow_all_cpu():
+    """
+    Executes a series of commands to process data, train, and test the span categorization (sc) and relation
+    extraction (rel) models using the CPU.
+    """
+    print("Running `sc process-data`...")
+    sc_process_data()
+    print("Running `sc train-gpu`...")
+    sc_train_gpu()
+    print("Running `sc tl-gpu`...")
+    sc_tl_gpu()
+    print("Running `sc test`...")
+    sc_test()
+    print("Running `rel process-data`...")
+    rel_process_data()
+    print("Running `rel train-gpu`...")
+    rel_train_gpu()
+    print("Running `rel tl-gpu`...")
+    rel_tl_gpu()
+    print("Running `rel test`...")
+    rel_test()
+    print("Running `clean`...")
+    clean()
+    print("Complete.")
+
+
+# Span cat commands
+
+@sc_app.command("process-data")
+def sc_process_data():
+    """
+    Instructs to use the Prodigy function (data-to-spacy) for data processing.
+    """
+    print("Use the Prodigy function (data-to-spacy) to complete this step.")
+
+
+@sc_app.command("train-cpu")
+def sc_train_cpu(
+        sc_tok2vec_config: str = constants.SC_TOK2VEC_CONFIG,
+        sc_train_file: str = constants.SC_TRAIN_FILE,
+        sc_dev_file: str = constants.SC_DEV_FILE,
+):
+    """
+    Trains the span categorization (sc) model on the CPU and evaluates it on the dev corpus.
+    """
+    os.system(f"python -m spacy train ${sc_tok2vec_config} --output sctraining --paths.train ${sc_train_file} --paths"
+              f".dev ${sc_dev_file}")
+
+
+@sc_app.command("tl-cpu")
+def sc_tl_cpu(
+        sc_tl_tok2vec_config: str = constants.SC_TL_TOK2VEC_CONFIG,
+        sc_train_file: str = constants.SC_TRAIN_FILE,
+        sc_dev_file: str = constants.SC_DEV_FILE,
+):
+    """
+    Trains the span categorization (sc) model using transfer learning on the CPU and evaluates it on the dev corpus.
+    """
+    os.system(f"python -m spacy train ${sc_tl_tok2vec_config} --output sctraining --paths.train ${sc_train_file}" 
+              f" --paths.dev ${sc_dev_file}")
+
+
+@sc_app.command("train-gpu")
+def sc_train_gpu(
+        sc_trf_config: str = constants.SC_TRF_CONFIG,
+        sc_train_file: str = constants.SC_TRAIN_FILE,
+        sc_dev_file: str = constants.SC_DEV_FILE,
+):
+    """
+    Trains the span categorization (sc) model on the GPU and evaluates it on the dev corpus.
+    """
+    os.system(f"python -m spacy train ${sc_trf_config} --output sctraining --paths.train ${sc_train_file} --paths.dev" 
+              f" ${sc_dev_file} --gpu-id 0")
+
+
+@sc_app.command("tl-gpu")
+def sc_tl_gpu(
+        sc_tl_trf_config: str = constants.SC_TL_TRF_CONFIG,
+        sc_train_file: str = constants.SC_TRAIN_FILE,
+        sc_dev_file: str = constants.SC_DEV_FILE,
+):
+    """
+    Trains the span categorization (sc) model using transfer learning on the GPU and evaluates it on the dev corpus.
+    """
+    os.system(f"python -m spacy train ${sc_tl_trf_config} --output sctraining --paths.train ${sc_train_file} --paths"
+              f".dev ${sc_dev_file} --gpu-id 0")
+
+
+@sc_app.command("test")
+def sc_test(
+        sc_trained_model: str = constants.SC_TRAINED_MODEL,
+        sc_test_file: str = constants.SC_TEST_FILE,
+):
+    """
+    Applies the best span categorization model to unseen text and measures accuracy at different thresholds.
+    """
+    os.system(f"python -m spacy evaluate ${sc_trained_model} ${sc_test_file}")
+
+
+# Relation commands
+
+@rel_app.command("process-data")
+def rel_process_data(
+        annotations_file: str = constants.ANNOTATIONS,
+        rel_train_file: str = constants.REL_TRAIN_FILE,
+        rel_dev_file: str = constants.REL_DEV_FILE,
+        rel_test_file: str = constants.REL_TEST_FILE,
+):
+    """
+    Parses the gold-standard annotations from the Prodigy annotations.
+    """
+    os.system(f"python ./functions/parser.py ${annotations_file} ${rel_train_file} ${rel_dev_file} ${rel_test_file}")
+
+
+@rel_app.command("train-cpu")
+def rel_train_cpu(
+        rel_tok2vec_config: str = constants.REL_TOK2VEC_CONFIG,
+        rel_train_file: str = constants.REL_TRAIN_FILE,
+        rel_dev_file: str = constants.REL_DEV_FILE,
+):
+    """
+    Trains the relation extraction (rel) model on the CPU and evaluates it on the dev corpus.
+    """
+    os.system(f"python -m spacy train ${rel_tok2vec_config} --output reltraining --paths.train ${rel_train_file}"
+              f" --paths.dev ${rel_dev_file} -c ./functions/build.py")
+
+
+@rel_app.command("tl-cpu")
+def rel_tl_cpu(
+        rel_tl_tok2vec_config: str = constants.REL_TL_TOK2VEC_CONFIG,
+        rel_train_file: str = constants.REL_TRAIN_FILE,
+        rel_dev_file: str = constants.REL_DEV_FILE,
+):
+    """
+    Trains the relation extraction (rel) model using transfer learning on the CPU and evaluates it on the dev corpus.
+    """
+    os.system(f"python -m spacy train ${rel_tl_tok2vec_config} --output reltraining --paths.train ${rel_train_file}"
+              f" --paths.dev ${rel_dev_file} -c ./functions/build.py")
+
+
+@rel_app.command("train-gpu")
+def rel_train_gpu(
+        rel_trf_config: str = constants.REL_TRF_CONFIG,
+        rel_train_file: str = constants.REL_TRAIN_FILE,
+        rel_dev_file: str = constants.REL_DEV_FILE,
+):
+    """
+    Trains the relation extraction (rel) model with a Transformer on the GPU and evaluates it on the dev corpus.
+    """
+    os.system(f"python -m spacy train ${rel_trf_config} --output reltraining --paths.train ${rel_train_file}"
+              f" --paths.dev ${rel_dev_file} -c ./functions/build.py --gpu-id 0")
+
+
+@rel_app.command("tl-gpu")
+def rel_tl_gpu(
+        rel_tl_trf_config: str = constants.REL_TL_TRF_CONFIG,
+        rel_train_file: str = constants.REL_TRAIN_FILE,
+        rel_dev_file: str = constants.REL_DEV_FILE,
+):
+    """
+    Trains the relation extraction (rel) model with a Transformer using transfer learning on the GPU and evaluates it
+    on the dev corpus.
+    """
+    os.system(f"python -m spacy train ${rel_tl_trf_config} --output reltraining --paths.train ${rel_train_file}"
+              f" --paths.dev ${rel_dev_file} -c ./functions/build.py --gpu-id 0")
+
+
+@rel_app.command("test")
+def rel_test(
+        rel_trained_model: str = constants.REL_TRAINED_MODEL,
+        rel_test_file: str = constants.REL_TEST_FILE,
+):
+    """
+    Applies the best relation extraction model to unseen text and measures accuracy at different thresholds.
+    """
+    os.system(f"python ./functions/test.py ${rel_trained_model} ${rel_test_file} False")
+
+
+# Auxiliary commands
+
+@aux_app.command("extract-paper")
+def aux_extract_paper(
+        paper_path: str,
+        jsonl_path: str,
+        char_limit: int = None,
+):
+    """
+    Converts paper PDF at specified path into a sequence of JSONL files each corresponding to a text chunk, where each
+        JSONL line is tokenized by sentence. Example: if provided path is `dir/file` and the Paper text contains two
+        chunks, files `dir/file_1.jsonl` and `dir/file_2.jsonl` will be generated; otherwise, if the Paper text contains
+        one chunk, `dir/file.jsonl` will be generated.
+    """
+    paper = aux.extract_paper(paper_path, char_limit)
+    paper.write_to_jsonl(jsonl_path)
+
+
+@aux_app.command("extract-elsevier-paper")
+def aux_extract_elsevier_paper(
+        doi_code: str,
+        api_key: str,
+        jsonl_path: str,
+        char_limit: int = None,
+):
+    """
+    Converts Elsevier paper with specified DOI code into a sequence of JSONL files each corresponding to a text
+    chunk, where each JSONL line is tokenized by sentence. Example: if provided path is `dir/file` and the Paper text
+    contains two chunks, files `dir/file_1.jsonl` and `dir/file_2.jsonl` will be generated; otherwise, if the Paper
+    text contains one chunk, `dir/file.jsonl` will be generated.
+    """
+    paper = aux.get_elsevier_paper(doi_code, api_key, char_limit)
+    paper.write_to_jsonl(jsonl_path)
+
+
+# if __name__ == "__main__":
+#     app()

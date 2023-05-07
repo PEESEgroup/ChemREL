@@ -1,0 +1,23 @@
+[project]
+name = "chemrel"
+version = "0.0.1"
+description = "A project which focuses on automating and transferring chemical data extraction using span categorization and relation extraction models."
+dependencies = [
+    "nltk",
+    "httpx",
+    "jsonlines",
+    "PyMuPDF",
+    "typer",
+    "urllib3",
+    "regex",
+    "spacy",
+]
+readme = "README.md"
+
+[project.scripts]
+chemrel = "chemrel.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
