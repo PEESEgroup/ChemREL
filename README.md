@@ -1,3 +1,7 @@
+### Repo for testing ChemREL packaging
+
+-------------------------------------------------
+
 # Project of Span Categorization and Relation Extraction of Chemicals and Their Properties
 
 This project focuses on automating and transferring chemical data extraction using span categorization and relation extraction models.
