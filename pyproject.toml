@@ -4,6 +4,7 @@ version = "0.0.1"
 description = "A project which focuses on automating and transferring chemical data extraction using span categorization and relation extraction models."
 dependencies = [
     "huggingface-hub",
+    "prettytable",
     "nltk",
     "httpx",
     "jsonlines",

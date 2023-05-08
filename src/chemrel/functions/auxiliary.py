@@ -97,13 +97,13 @@ class Paper:
                 for i in range(0, len(subtext), char_limit):
                     self.text.append(subtext[i: i + char_limit])
 
-    def write_to_jsonl(self, jsonl_path_no_ext):
+    def write_to_jsonl(self, jsonl_path):
         """
         Outputs text content to a sequence of JSONL files each corresponding to a text chunk, where each
-        JSONL line is tokenized by sentence. Example: if provided path is `dir/file` and the Paper text contains two
+        JSONL line is tokenized by sentence. Example: if provided path is `dir/file.jsonl` and the Paper text contains two
         chunks, files `dir/file_1.jsonl` and `dir/file_2.jsonl` will be generated; otherwise, if the Paper text contains
         one chunk, `dir/file.jsonl` will be generated.
-        :param jsonl_path_no_ext: Filepath to save JSONL files to, excluding filename extension
+        :param jsonl_path: Filepath to save JSONL files to, ignores filename extension
         :return: None
         """
         if len(self.text) <= 1:
@@ -111,7 +111,7 @@ class Paper:
         else:
             suffices = ["_" + str(i) for i in list(range(1, len(self.text) + 1))]
         for suffix in suffices:
-            with jsonlines.open(f"{jsonl_path_no_ext}{suffix}.jsonl", mode='w') as writer:
+            with jsonlines.open(f"{os.path.splitext(jsonl_path)[0]}{suffix}.jsonl", mode='w') as writer:
                 for block in self.text:
                     sentences = sent_tokenize(block)
                     for sentence in sentences:
