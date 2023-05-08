@@ -15,8 +15,8 @@ app.add_typer(predict_app, name="predict")
 workflow_app = typer.Typer()
 app.add_typer(workflow_app, name="workflow")
 
-sc_app = typer.Typer()
-app.add_typer(sc_app, name="sc")
+span_app = typer.Typer()
+app.add_typer(span_app, name="span")
 
 rel_app = typer.Typer()
 app.add_typer(rel_app, name="rel")
@@ -58,12 +58,12 @@ def clean():
 
 # Predict commands
 
-@predict_app.command("sc")
-def predict_sc(
+@predict_app.command("span")
+def predict_span(
         sc_model_path: str,
         text: str,
 ):
-    predict.predict_spans(sc_model_path, text)
+    predict.predict_span(os.path.normpath(sc_model_path), text)
 
 
 @predict_app.command("rel")
@@ -72,7 +72,7 @@ def predict_rel(
         rel_model_path: str,
         text: str,
 ):
-    predict.predict_rel(sc_model_path, rel_model_path, text)
+    predict.predict_rel(os.path.normpath(sc_model_path), os.path.normpath(rel_model_path), text)
 
 
 # Workflow commands
@@ -83,14 +83,14 @@ def workflow_all_gpu():
     Executes a series of commands to process data, train, and test the span categorization (sc) and relation
     extraction (rel) models using the GPU.
     """
-    print("Running `sc process-data`...")
-    sc_process_data()
-    print("Running `sc train-cpu`...")
-    sc_train_cpu()
-    print("Running `sc tl-cpu`...")
-    sc_tl_cpu()
-    print("Running `sc test`...")
-    sc_test()
+    print("Running `span process-data`...")
+    span_process_data()
+    print("Running `span train-cpu`...")
+    span_train_cpu()
+    print("Running `span tl-cpu`...")
+    span_tl_cpu()
+    print("Running `span test`...")
+    span_test()
     print("Running `rel process-data`...")
     rel_process_data()
     print("Running `rel train-cpu`...")
@@ -110,14 +110,14 @@ def workflow_all_cpu():
     Executes a series of commands to process data, train, and test the span categorization (sc) and relation
     extraction (rel) models using the CPU.
     """
-    print("Running `sc process-data`...")
-    sc_process_data()
-    print("Running `sc train-gpu`...")
-    sc_train_gpu()
-    print("Running `sc tl-gpu`...")
-    sc_tl_gpu()
-    print("Running `sc test`...")
-    sc_test()
+    print("Running `span process-data`...")
+    span_process_data()
+    print("Running `span train-gpu`...")
+    span_train_gpu()
+    print("Running `span tl-gpu`...")
+    span_tl_gpu()
+    print("Running `span test`...")
+    span_test()
     print("Running `rel process-data`...")
     rel_process_data()
     print("Running `rel train-gpu`...")
@@ -133,16 +133,16 @@ def workflow_all_cpu():
 
 # Span cat commands
 
-@sc_app.command("process-data")
-def sc_process_data():
+@span_app.command("process-data")
+def span_process_data():
     """
     Instructs to use the Prodigy function (data-to-spacy) for data processing.
     """
     print("Use the Prodigy function (data-to-spacy) to complete this step.")
 
 
-@sc_app.command("train-cpu")
-def sc_train_cpu(
+@span_app.command("train-cpu")
+def span_train_cpu(
         tok2vec_config: str = constants.SC_TOK2VEC_CONFIG,
         train_file: str = constants.SC_TRAIN_FILE,
         dev_file: str = constants.SC_DEV_FILE,
@@ -154,8 +154,8 @@ def sc_train_cpu(
               f".dev ${dev_file}")
 
 
-@sc_app.command("tl-cpu")
-def sc_tl_cpu(
+@span_app.command("tl-cpu")
+def span_tl_cpu(
         tl_tok2vec_config: str = constants.SC_TL_TOK2VEC_CONFIG,
         train_file: str = constants.SC_TRAIN_FILE,
         dev_file: str = constants.SC_DEV_FILE,
@@ -167,8 +167,8 @@ def sc_tl_cpu(
               f" --paths.dev ${dev_file}")
 
 
-@sc_app.command("train-gpu")
-def sc_train_gpu(
+@span_app.command("train-gpu")
+def span_train_gpu(
         trf_config: str = constants.SC_TRF_CONFIG,
         train_file: str = constants.SC_TRAIN_FILE,
         dev_file: str = constants.SC_DEV_FILE,
@@ -180,8 +180,8 @@ def sc_train_gpu(
               f" ${dev_file} --gpu-id 0")
 
 
-@sc_app.command("tl-gpu")
-def sc_tl_gpu(
+@span_app.command("tl-gpu")
+def span_tl_gpu(
         tl_trf_config: str = constants.SC_TL_TRF_CONFIG,
         train_file: str = constants.SC_TRAIN_FILE,
         dev_file: str = constants.SC_DEV_FILE,
@@ -193,8 +193,8 @@ def sc_tl_gpu(
               f".dev ${dev_file} --gpu-id 0")
 
 
-@sc_app.command("test")
-def sc_test(
+@span_app.command("test")
+def span_test(
         trained_model: str = constants.SC_TRAINED_MODEL,
         test_file: str = constants.SC_TEST_FILE,
 ):
