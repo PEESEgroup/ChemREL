@@ -1,9 +1,0 @@
-{
-  "labels":[
-    "CHEMICAL",
-    "MP"
-  ],
-  "spans_key":"sc",
-  "threshold":0.5,
-  "max_positive":null
-}

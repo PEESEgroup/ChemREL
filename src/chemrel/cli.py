@@ -1,9 +1,16 @@
+import pathlib
 import typer
 import os
 import chemrel.cli_constants as constants
+import chemrel.functions.predict as predict
 import chemrel.functions.auxiliary as aux
+from pathlib import Path
+from huggingface_hub import snapshot_download
 
 app = typer.Typer()
+
+predict_app = typer.Typer()
+app.add_typer(predict_app, name="predict")
 
 workflow_app = typer.Typer()
 app.add_typer(workflow_app, name="workflow")
@@ -20,8 +27,22 @@ app.add_typer(aux_app, name="aux")
 
 # App commands
 
+@app.command("init")
+def init(path: str = "./"):
+    """
+    Initializes necessary files at given path.
+    """
+    print("Creating directories...")
+    for dir in ["configs", "assets", "scdata", "sctraining", "reldata", "reltraining"]:
+        Path(f"{os.path.normpath(path)}/{dir}").mkdir(parents=True, exist_ok=True)
+    print("Downloading models...")
+    snapshot_download(repo_id="AbdulelahAlshehri/chemrelmodels", local_dir= "./")
+    print("Complete.")
+    if path != "./": print(f"Note: Run `cd {path}` before running other commands.")
+
+
 @app.command("test")
-def test():
+def test(path: str):
     os.system("python --version")
 
 
@@ -35,9 +56,23 @@ def clean():
     os.system("rm -rf sctraining/*")
 
 
-@app.command("predict")
-def predict():
-    print("Command not available.")
+# Predict commands
+
+@predict_app.command("sc")
+def predict_sc(
+        sc_model_path: str,
+        text: str,
+):
+    predict.predict_spans(sc_model_path, text)
+
+
+@predict_app.command("rel")
+def predict_rel(
+        sc_model_path: str,
+        rel_model_path: str,
+        text: str,
+):
+    predict.predict_rel(sc_model_path, rel_model_path, text)
 
 
 # Workflow commands
