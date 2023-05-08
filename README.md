@@ -9,7 +9,6 @@ This project focuses on automating and transferring chemical data extraction usi
 ## To Do
  - Separate the predict 
  - Explain steps##
- - Overriding cli 
  - Documentation
  - Tutorial
  - Testing
