@@ -108,65 +108,65 @@ def sc_process_data():
 
 @sc_app.command("train-cpu")
 def sc_train_cpu(
-        sc_tok2vec_config: str = constants.SC_TOK2VEC_CONFIG,
-        sc_train_file: str = constants.SC_TRAIN_FILE,
-        sc_dev_file: str = constants.SC_DEV_FILE,
+        tok2vec_config: str = constants.SC_TOK2VEC_CONFIG,
+        train_file: str = constants.SC_TRAIN_FILE,
+        dev_file: str = constants.SC_DEV_FILE,
 ):
     """
     Trains the span categorization (sc) model on the CPU and evaluates it on the dev corpus.
     """
-    os.system(f"python -m spacy train ${sc_tok2vec_config} --output sctraining --paths.train ${sc_train_file} --paths"
-              f".dev ${sc_dev_file}")
+    os.system(f"python -m spacy train ${tok2vec_config} --output sctraining --paths.train ${train_file} --paths"
+              f".dev ${dev_file}")
 
 
 @sc_app.command("tl-cpu")
 def sc_tl_cpu(
-        sc_tl_tok2vec_config: str = constants.SC_TL_TOK2VEC_CONFIG,
-        sc_train_file: str = constants.SC_TRAIN_FILE,
-        sc_dev_file: str = constants.SC_DEV_FILE,
+        tl_tok2vec_config: str = constants.SC_TL_TOK2VEC_CONFIG,
+        train_file: str = constants.SC_TRAIN_FILE,
+        dev_file: str = constants.SC_DEV_FILE,
 ):
     """
     Trains the span categorization (sc) model using transfer learning on the CPU and evaluates it on the dev corpus.
     """
-    os.system(f"python -m spacy train ${sc_tl_tok2vec_config} --output sctraining --paths.train ${sc_train_file}" 
-              f" --paths.dev ${sc_dev_file}")
+    os.system(f"python -m spacy train ${tl_tok2vec_config} --output sctraining --paths.train ${train_file}" 
+              f" --paths.dev ${dev_file}")
 
 
 @sc_app.command("train-gpu")
 def sc_train_gpu(
-        sc_trf_config: str = constants.SC_TRF_CONFIG,
-        sc_train_file: str = constants.SC_TRAIN_FILE,
-        sc_dev_file: str = constants.SC_DEV_FILE,
+        trf_config: str = constants.SC_TRF_CONFIG,
+        train_file: str = constants.SC_TRAIN_FILE,
+        dev_file: str = constants.SC_DEV_FILE,
 ):
     """
     Trains the span categorization (sc) model on the GPU and evaluates it on the dev corpus.
     """
-    os.system(f"python -m spacy train ${sc_trf_config} --output sctraining --paths.train ${sc_train_file} --paths.dev" 
-              f" ${sc_dev_file} --gpu-id 0")
+    os.system(f"python -m spacy train ${trf_config} --output sctraining --paths.train ${train_file} --paths.dev" 
+              f" ${dev_file} --gpu-id 0")
 
 
 @sc_app.command("tl-gpu")
 def sc_tl_gpu(
-        sc_tl_trf_config: str = constants.SC_TL_TRF_CONFIG,
-        sc_train_file: str = constants.SC_TRAIN_FILE,
-        sc_dev_file: str = constants.SC_DEV_FILE,
+        tl_trf_config: str = constants.SC_TL_TRF_CONFIG,
+        train_file: str = constants.SC_TRAIN_FILE,
+        dev_file: str = constants.SC_DEV_FILE,
 ):
     """
     Trains the span categorization (sc) model using transfer learning on the GPU and evaluates it on the dev corpus.
     """
-    os.system(f"python -m spacy train ${sc_tl_trf_config} --output sctraining --paths.train ${sc_train_file} --paths"
-              f".dev ${sc_dev_file} --gpu-id 0")
+    os.system(f"python -m spacy train ${tl_trf_config} --output sctraining --paths.train ${train_file} --paths"
+              f".dev ${dev_file} --gpu-id 0")
 
 
 @sc_app.command("test")
 def sc_test(
-        sc_trained_model: str = constants.SC_TRAINED_MODEL,
-        sc_test_file: str = constants.SC_TEST_FILE,
+        trained_model: str = constants.SC_TRAINED_MODEL,
+        test_file: str = constants.SC_TEST_FILE,
 ):
     """
     Applies the best span categorization model to unseen text and measures accuracy at different thresholds.
     """
-    os.system(f"python -m spacy evaluate ${sc_trained_model} ${sc_test_file}")
+    os.system(f"python -m spacy evaluate ${trained_model} ${test_file}")
 
 
 # Relation commands
@@ -174,78 +174,78 @@ def sc_test(
 @rel_app.command("process-data")
 def rel_process_data(
         annotations_file: str = constants.ANNOTATIONS,
-        rel_train_file: str = constants.REL_TRAIN_FILE,
-        rel_dev_file: str = constants.REL_DEV_FILE,
-        rel_test_file: str = constants.REL_TEST_FILE,
+        train_file: str = constants.REL_TRAIN_FILE,
+        dev_file: str = constants.REL_DEV_FILE,
+        test_file: str = constants.REL_TEST_FILE,
 ):
     """
     Parses the gold-standard annotations from the Prodigy annotations.
     """
-    os.system(f"python ./functions/parser.py ${annotations_file} ${rel_train_file} ${rel_dev_file} ${rel_test_file}")
+    os.system(f"python ./functions/parser.py ${annotations_file} ${train_file} ${dev_file} ${test_file}")
 
 
 @rel_app.command("train-cpu")
 def rel_train_cpu(
-        rel_tok2vec_config: str = constants.REL_TOK2VEC_CONFIG,
-        rel_train_file: str = constants.REL_TRAIN_FILE,
-        rel_dev_file: str = constants.REL_DEV_FILE,
+        tok2vec_config: str = constants.REL_TOK2VEC_CONFIG,
+        train_file: str = constants.REL_TRAIN_FILE,
+        dev_file: str = constants.REL_DEV_FILE,
 ):
     """
     Trains the relation extraction (rel) model on the CPU and evaluates it on the dev corpus.
     """
-    os.system(f"python -m spacy train ${rel_tok2vec_config} --output reltraining --paths.train ${rel_train_file}"
-              f" --paths.dev ${rel_dev_file} -c ./functions/build.py")
+    os.system(f"python -m spacy train ${tok2vec_config} --output reltraining --paths.train ${train_file}"
+              f" --paths.dev ${dev_file} -c ./functions/build.py")
 
 
 @rel_app.command("tl-cpu")
 def rel_tl_cpu(
-        rel_tl_tok2vec_config: str = constants.REL_TL_TOK2VEC_CONFIG,
-        rel_train_file: str = constants.REL_TRAIN_FILE,
-        rel_dev_file: str = constants.REL_DEV_FILE,
+        tl_tok2vec_config: str = constants.REL_TL_TOK2VEC_CONFIG,
+        train_file: str = constants.REL_TRAIN_FILE,
+        dev_file: str = constants.REL_DEV_FILE,
 ):
     """
     Trains the relation extraction (rel) model using transfer learning on the CPU and evaluates it on the dev corpus.
     """
-    os.system(f"python -m spacy train ${rel_tl_tok2vec_config} --output reltraining --paths.train ${rel_train_file}"
-              f" --paths.dev ${rel_dev_file} -c ./functions/build.py")
+    os.system(f"python -m spacy train ${tl_tok2vec_config} --output reltraining --paths.train ${train_file}"
+              f" --paths.dev ${dev_file} -c ./functions/build.py")
 
 
 @rel_app.command("train-gpu")
 def rel_train_gpu(
-        rel_trf_config: str = constants.REL_TRF_CONFIG,
-        rel_train_file: str = constants.REL_TRAIN_FILE,
-        rel_dev_file: str = constants.REL_DEV_FILE,
+        trf_config: str = constants.REL_TRF_CONFIG,
+        train_file: str = constants.REL_TRAIN_FILE,
+        dev_file: str = constants.REL_DEV_FILE,
 ):
     """
     Trains the relation extraction (rel) model with a Transformer on the GPU and evaluates it on the dev corpus.
     """
-    os.system(f"python -m spacy train ${rel_trf_config} --output reltraining --paths.train ${rel_train_file}"
-              f" --paths.dev ${rel_dev_file} -c ./functions/build.py --gpu-id 0")
+    os.system(f"python -m spacy train ${trf_config} --output reltraining --paths.train ${train_file}"
+              f" --paths.dev ${dev_file} -c ./functions/build.py --gpu-id 0")
 
 
 @rel_app.command("tl-gpu")
 def rel_tl_gpu(
-        rel_tl_trf_config: str = constants.REL_TL_TRF_CONFIG,
-        rel_train_file: str = constants.REL_TRAIN_FILE,
-        rel_dev_file: str = constants.REL_DEV_FILE,
+        tl_trf_config: str = constants.REL_TL_TRF_CONFIG,
+        train_file: str = constants.REL_TRAIN_FILE,
+        dev_file: str = constants.REL_DEV_FILE,
 ):
     """
     Trains the relation extraction (rel) model with a Transformer using transfer learning on the GPU and evaluates it
     on the dev corpus.
     """
-    os.system(f"python -m spacy train ${rel_tl_trf_config} --output reltraining --paths.train ${rel_train_file}"
-              f" --paths.dev ${rel_dev_file} -c ./functions/build.py --gpu-id 0")
+    os.system(f"python -m spacy train ${tl_trf_config} --output reltraining --paths.train ${train_file}"
+              f" --paths.dev ${dev_file} -c ./functions/build.py --gpu-id 0")
 
 
 @rel_app.command("test")
 def rel_test(
-        rel_trained_model: str = constants.REL_TRAINED_MODEL,
-        rel_test_file: str = constants.REL_TEST_FILE,
+        trained_model: str = constants.REL_TRAINED_MODEL,
+        test_file: str = constants.REL_TEST_FILE,
 ):
     """
     Applies the best relation extraction model to unseen text and measures accuracy at different thresholds.
     """
-    os.system(f"python ./functions/test.py ${rel_trained_model} ${rel_test_file} False")
+    os.system(f"python ./functions/test.py ${trained_model} ${test_file} False")
 
 
 # Auxiliary commands
