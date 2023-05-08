@@ -7,14 +7,13 @@
 This project focuses on automating and transferring chemical data extraction using span categorization and relation extraction models.
 
 ## To Do
+ - Separate the predict 
+ - Explain steps##
+ - Overriding cli 
+ - Documentation
+ - Tutorial
+ - Testing
  
-- Add a predict function based on the toy example. It should take the text and the directories of the span categorization and relation models with melting point and LD50 options
-- Add helper functions
-- Add visualization function or directly use displacy 
-- Upload the four trained models on huggingface or possibly only the transformers and create functions to automatically download them into their respective folders 
-- Abdul to create license file
-- Package all functions
-
 ## Table of Contents
 
 - [Overview](#overview)
