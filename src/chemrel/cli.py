@@ -42,7 +42,7 @@ def init(path: str = "./"):
 
 
 @app.command("test")
-def test(path: str):
+def test():
     os.system("python --version")
 
 
@@ -316,7 +316,3 @@ def aux_extract_elsevier_paper(
     """
     paper = aux.get_elsevier_paper(doi_code, api_key, char_limit)
     paper.write_to_jsonl(jsonl_path)
-
-
-# if __name__ == "__main__":
-#     app()

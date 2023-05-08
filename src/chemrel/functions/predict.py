@@ -1,8 +1,8 @@
 import spacy
 from spacy import displacy
 from spacy.tokens import DocBin, Doc
-from pipeline import custom_relation_extractor, relation_scorer
-from model import build_relation_model, build_classification_layer, build_instances, build_tensors
+from chemrel.functions.pipeline import custom_relation_extractor, relation_scorer
+from chemrel.functions.model import build_relation_model, build_classification_layer, build_instances, build_tensors
 
 
 def predict_spans(sc_model, text):
