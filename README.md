@@ -10,6 +10,10 @@ $ chemrel init
 
 ---
 
+## `chemrel`
+
+Main command to invoke ChemREL CLI.
+
 **Usage**:
 
 ```console
