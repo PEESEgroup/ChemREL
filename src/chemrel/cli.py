@@ -10,7 +10,17 @@ from pathlib import Path
 from huggingface_hub import snapshot_download
 
 
-app = typer.Typer(help="ChemREL Command Line Interface (CLI)")
+landing_text = """
+ChemREL Command Line Interface (CLI).
+
+Automate and transfer chemical data extraction using span categorization and relation extraction models.
+
+To initialize the assets required by the CLI, run the following command: 
+
+$ chemrel init
+"""
+
+app = typer.Typer(help=landing_text)
 
 predict_app = typer.Typer(help="Predicts the spans and/or relations in a given text using the given models.")
 app.add_typer(predict_app, name="predict")
@@ -58,8 +68,8 @@ def clean():
 
 @predict_app.command("span")
 def predict_span(
-        sc_model_path: str = typer.Argument(help=constants.SC_MODEL_PATH_HELP_STRING),
-        text: str = typer.Argument(help=constants.TEXT_HELP_STRING),
+        sc_model_path: str = typer.Argument(default=..., help=constants.SC_MODEL_PATH_HELP_STRING),
+        text: str = typer.Argument(default=..., help=constants.TEXT_HELP_STRING),
 ):
     """
     Predicts spans contained in given text and prints them.
@@ -76,9 +86,9 @@ def predict_span(
 
 @predict_app.command("rel")
 def predict_rel(
-        sc_model_path: str = typer.Argument(help=constants.SC_MODEL_PATH_HELP_STRING),
-        rel_model_path: str = typer.Argument(help=constants.REL_MODEL_PATH_HELP_STRING),
-        text: str = typer.Argument(help=constants.TEXT_HELP_STRING),
+        sc_model_path: str = typer.Argument(default=..., help=constants.SC_MODEL_PATH_HELP_STRING),
+        rel_model_path: str = typer.Argument(default=..., help=constants.REL_MODEL_PATH_HELP_STRING),
+        text: str = typer.Argument(default=..., help=constants.TEXT_HELP_STRING),
 ):
     """
     Predicts spans and the relations between them contained in given text determined by the given models and prints
@@ -306,8 +316,8 @@ def rel_test(
 
 @aux_app.command("extract-paper")
 def aux_extract_paper(
-        paper_path: str = typer.Argument(help=constants.PAPER_PATH_HELP_STRING),
-        jsonl_path: str = typer.Argument(help=constants.JSONL_PATH_HELP_STRING),
+        paper_path: str = typer.Argument(default=..., help=constants.PAPER_PATH_HELP_STRING),
+        jsonl_path: str = typer.Argument(default=..., help=constants.JSONL_PATH_HELP_STRING),
         char_limit: int = typer.Argument(default=None, help=constants.CHAR_LIMIT_HELP_STRING),
 ):
     """
@@ -322,9 +332,9 @@ def aux_extract_paper(
 
 @aux_app.command("extract-elsevier-paper")
 def aux_extract_elsevier_paper(
-        doi_code: str = typer.Argument(help=constants.DOI_CODE_HELP_STRING),
-        api_key: str = typer.Argument(help=constants.API_KEY_HELP_STRING),
-        jsonl_path: str = typer.Argument(help=constants.JSONL_PATH_HELP_STRING),
+        doi_code: str = typer.Argument(default=..., help=constants.DOI_CODE_HELP_STRING),
+        api_key: str = typer.Argument(default=..., help=constants.API_KEY_HELP_STRING),
+        jsonl_path: str = typer.Argument(default=..., help=constants.JSONL_PATH_HELP_STRING),
         char_limit: int = typer.Argument(default=None, help=constants.CHAR_LIMIT_HELP_STRING),
 ):
     """
