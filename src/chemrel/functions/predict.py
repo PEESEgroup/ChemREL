@@ -7,6 +7,13 @@ from collections import defaultdict
 
 
 def predict_span(sc_model, text):
+    """
+    Predicts spans contained in given text determined by the given span categorization model.
+    :param sc_model: File path of span categorization model to be used
+    :param text: Text content to predict spans within
+    :return: Dictionary with each key corresponding to a span label, and each value being a list of tuples containing
+    the span text and prediction confidence score of that label
+    """
     nlp = spacy.load(sc_model)
     doc = nlp(text)
     spans = doc.spans["sc"]
@@ -17,6 +24,15 @@ def predict_span(sc_model, text):
 
 
 def predict_rel(sc_model, rel_model, text):
+    """
+    Predicts spans and the relations between them contained in given text determined by the given span categorization
+    and relation extraction model.
+    :param sc_model: File path of span categorization model to be used
+    :param rel_model: File path of relation extraction model to be used
+    :param text: Text content to predict spans and relations within
+    :return: Dictionary with each key being a tuple of span labels for which a relation exists, and each value being a
+    list of tuples containing a tuple of the related span texts and prediction confidence score of that relation
+    """
     nlp = spacy.load(sc_model)
     doc = nlp(text)
     doc.ents = doc.spans['sc']

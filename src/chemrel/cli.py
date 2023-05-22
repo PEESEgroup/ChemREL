@@ -1,51 +1,48 @@
 import pathlib
 import typer
+from rich import print
+from rich.table import Table
+from typing_extensions import Annotated
 import os
 import chemrel.cli_constants as constants
 import chemrel.functions.predict as predict
 import chemrel.functions.auxiliary as aux
 from pathlib import Path
 from huggingface_hub import snapshot_download
-from prettytable import PrettyTable
 
 
-app = typer.Typer()
+app = typer.Typer(help="ChemREL Command Line Interface (CLI)")
 
-predict_app = typer.Typer()
+predict_app = typer.Typer(help="Predicts the spans and/or relations in a given text using the given models.")
 app.add_typer(predict_app, name="predict")
 
-workflow_app = typer.Typer()
+workflow_app = typer.Typer(help="Run an available workflow.")
 app.add_typer(workflow_app, name="workflow")
 
-span_app = typer.Typer()
+span_app = typer.Typer(help="Configure and/or train a span categorization model.")
 app.add_typer(span_app, name="span")
 
-rel_app = typer.Typer()
+rel_app = typer.Typer(help="Configure and/or train a relation extraction model.")
 app.add_typer(rel_app, name="rel")
 
-aux_app = typer.Typer()
+aux_app = typer.Typer(help="Run one of a number of auxiliary data processing commands.")
 app.add_typer(aux_app, name="aux")
 
 
 # App commands
 
 @app.command("init")
-def init(path: str = "./"):
+def init(path: Annotated[str, typer.Argument(help="File path in which to initialize required files")] = "./"):
     """
-    Initializes necessary files at given path.
+    Initializes files required by package at given path.
     """
     print("Creating directories...")
     for dir in ["configs", "assets", "scdata", "sctraining", "reldata", "reltraining"]:
         Path(f"{os.path.normpath(path)}/{dir}").mkdir(parents=True, exist_ok=True)
     print("Downloading models...")
-    snapshot_download(repo_id="AbdulelahAlshehri/chemrelmodels", local_dir= "./")
+    snapshot_download(repo_id="AbdulelahAlshehri/chemrelmodels", local_dir= "./", ignore_patterns=["*.md"])
     print("Complete.")
     if path != "./": print(f"Note: Run `cd {path}` before running other commands.")
-
-
-@app.command("test")
-def test():
-    os.system("python --version")
 
 
 @app.command("clean")
@@ -62,33 +59,38 @@ def clean():
 
 @predict_app.command("span")
 def predict_span(
-        sc_model_path: str,
-        text: str,
+        sc_model_path: Annotated[str, typer.Argument(help=constants.SC_MODEL_PATH_HELP_STRING)],
+        text: Annotated[str, typer.Argument(help=constants.TEXT_HELP_STRING)],
 ):
+    """
+    Predicts spans contained in given text and prints them.
+    """
     span_results = predict.predict_span(os.path.normpath(sc_model_path), text)
-    spans_table = PrettyTable()
-    spans_table.field_names = ["#", "Span", "Label", "Confidence"]
+    spans_table = Table("#", "Span", "Label", "Confidence")
     counter = 1
     for label in span_results:
         for span in span_results[label]:
-            spans_table.add_row([counter, span[0], label, span[-1]])
+            spans_table.add_row(str(counter), span[0], label, str(span[-1]))
             counter += 1
     print(spans_table)
 
 
 @predict_app.command("rel")
 def predict_rel(
-        sc_model_path: str,
-        rel_model_path: str,
-        text: str,
+        sc_model_path: Annotated[str, typer.Argument(help=constants.SC_MODEL_PATH_HELP_STRING)],
+        rel_model_path: Annotated[str, typer.Argument(help=constants.REL_MODEL_PATH_HELP_STRING)],
+        text: Annotated[str, typer.Argument(help=constants.TEXT_HELP_STRING)],
 ):
+    """
+    Predicts spans and the relations between them contained in given text determined by the given models and prints
+    them.
+    """
     rel_results = predict.predict_rel(os.path.normpath(sc_model_path), os.path.normpath(rel_model_path), text)
     for rel_type in rel_results:
-        rel_table = PrettyTable()
-        rel_table.field_names = ["#", rel_type[0], rel_type[1], "Confidence"]
+        rel_table = Table("#", rel_type[0], rel_type[1], "Confidence")
         counter = 1
         for rel_pair in rel_results[rel_type]:
-            rel_table.add_row([counter, rel_pair[0][0], rel_pair[0][1], rel_pair[1]])
+            rel_table.add_row(str(counter), rel_pair[0][0], rel_pair[0][1], str(rel_pair[1]))
             counter += 1
         print(rel_table)
 
@@ -161,9 +163,10 @@ def span_process_data():
 
 @span_app.command("train-cpu")
 def span_train_cpu(
-        tok2vec_config: str = constants.SC_TOK2VEC_CONFIG,
-        train_file: str = constants.SC_TRAIN_FILE,
-        dev_file: str = constants.SC_DEV_FILE,
+        tok2vec_config: Annotated[str, typer.Argument(help=constants.TOK2VEC_CONFIG_HELP_STRING)] =
+        constants.SC_TOK2VEC_CONFIG,
+        train_file: Annotated[str, typer.Argument(help=constants.TRAIN_FILE_HELP_STRING)] = constants.SC_TRAIN_FILE,
+        dev_file: Annotated[str, typer.Argument(help=constants.DEV_FILE_HELP_STRING)] = constants.SC_DEV_FILE,
 ):
     """
     Trains the span categorization (sc) model on the CPU and evaluates it on the dev corpus.
@@ -174,9 +177,10 @@ def span_train_cpu(
 
 @span_app.command("tl-cpu")
 def span_tl_cpu(
-        tl_tok2vec_config: str = constants.SC_TL_TOK2VEC_CONFIG,
-        train_file: str = constants.SC_TRAIN_FILE,
-        dev_file: str = constants.SC_DEV_FILE,
+        tl_tok2vec_config: Annotated[str, typer.Argument(help=constants.TOK2VEC_CONFIG_HELP_STRING)] =
+        constants.SC_TL_TOK2VEC_CONFIG,
+        train_file: Annotated[str, typer.Argument(help=constants.TRAIN_FILE_HELP_STRING)] = constants.SC_TRAIN_FILE,
+        dev_file: Annotated[str, typer.Argument(help=constants.DEV_FILE_HELP_STRING)] = constants.SC_DEV_FILE,
 ):
     """
     Trains the span categorization (sc) model using transfer learning on the CPU and evaluates it on the dev corpus.
@@ -187,9 +191,9 @@ def span_tl_cpu(
 
 @span_app.command("train-gpu")
 def span_train_gpu(
-        trf_config: str = constants.SC_TRF_CONFIG,
-        train_file: str = constants.SC_TRAIN_FILE,
-        dev_file: str = constants.SC_DEV_FILE,
+        trf_config: Annotated[str, typer.Argument(help=constants.TRF_CONFIG_HELP_STRING)] = constants.SC_TRF_CONFIG,
+        train_file: Annotated[str, typer.Argument(help=constants.TRAIN_FILE_HELP_STRING)] = constants.SC_TRAIN_FILE,
+        dev_file: Annotated[str, typer.Argument(help=constants.DEV_FILE_HELP_STRING)] = constants.SC_DEV_FILE,
 ):
     """
     Trains the span categorization (sc) model on the GPU and evaluates it on the dev corpus.
@@ -200,9 +204,10 @@ def span_train_gpu(
 
 @span_app.command("tl-gpu")
 def span_tl_gpu(
-        tl_trf_config: str = constants.SC_TL_TRF_CONFIG,
-        train_file: str = constants.SC_TRAIN_FILE,
-        dev_file: str = constants.SC_DEV_FILE,
+        tl_trf_config: Annotated[str, typer.Argument(help=constants.TRF_CONFIG_HELP_STRING)] =
+        constants.SC_TL_TRF_CONFIG,
+        train_file: Annotated[str, typer.Argument(help=constants.TRAIN_FILE_HELP_STRING)] = constants.SC_TRAIN_FILE,
+        dev_file: Annotated[str, typer.Argument(help=constants.DEV_FILE_HELP_STRING)] = constants.SC_DEV_FILE,
 ):
     """
     Trains the span categorization (sc) model using transfer learning on the GPU and evaluates it on the dev corpus.
@@ -213,8 +218,9 @@ def span_tl_gpu(
 
 @span_app.command("test")
 def span_test(
-        trained_model: str = constants.SC_TRAINED_MODEL,
-        test_file: str = constants.SC_TEST_FILE,
+        trained_model: Annotated[str, typer.Argument(help=constants.TRAINED_MODEL_HELP_STRING)] =
+        constants.SC_TRAINED_MODEL,
+        test_file: Annotated[str, typer.Argument(help=constants.TEST_FILE_HELP_STRING)] = constants.SC_TEST_FILE,
 ):
     """
     Applies the best span categorization model to unseen text and measures accuracy at different thresholds.
@@ -226,10 +232,11 @@ def span_test(
 
 @rel_app.command("process-data")
 def rel_process_data(
-        annotations_file: str = constants.ANNOTATIONS,
-        train_file: str = constants.REL_TRAIN_FILE,
-        dev_file: str = constants.REL_DEV_FILE,
-        test_file: str = constants.REL_TEST_FILE,
+        annotations_file: Annotated[str, typer.Argument(help=constants.ANNOTATIONS_FILE_HELP_STRING)] =
+        constants.ANNOTATIONS,
+        train_file: Annotated[str, typer.Argument(help=constants.TRAIN_FILE_HELP_STRING)] = constants.REL_TRAIN_FILE,
+        dev_file: Annotated[str, typer.Argument(help=constants.DEV_FILE_HELP_STRING)] = constants.REL_DEV_FILE,
+        test_file: Annotated[str, typer.Argument(help=constants.TEST_FILE_HELP_STRING)] = constants.REL_TEST_FILE,
 ):
     """
     Parses the gold-standard annotations from the Prodigy annotations.
@@ -239,9 +246,10 @@ def rel_process_data(
 
 @rel_app.command("train-cpu")
 def rel_train_cpu(
-        tok2vec_config: str = constants.REL_TOK2VEC_CONFIG,
-        train_file: str = constants.REL_TRAIN_FILE,
-        dev_file: str = constants.REL_DEV_FILE,
+        tok2vec_config: Annotated[str, typer.Argument(help=constants.TOK2VEC_CONFIG_HELP_STRING)] =
+        constants.REL_TOK2VEC_CONFIG,
+        train_file: Annotated[str, typer.Argument(help=constants.TRAIN_FILE_HELP_STRING)] = constants.REL_TRAIN_FILE,
+        dev_file: Annotated[str, typer.Argument(help=constants.DEV_FILE_HELP_STRING)] = constants.REL_DEV_FILE,
 ):
     """
     Trains the relation extraction (rel) model on the CPU and evaluates it on the dev corpus.
@@ -252,9 +260,10 @@ def rel_train_cpu(
 
 @rel_app.command("tl-cpu")
 def rel_tl_cpu(
-        tl_tok2vec_config: str = constants.REL_TL_TOK2VEC_CONFIG,
-        train_file: str = constants.REL_TRAIN_FILE,
-        dev_file: str = constants.REL_DEV_FILE,
+        tl_tok2vec_config: Annotated[str, typer.Argument(help=constants.TOK2VEC_CONFIG_HELP_STRING)] =
+        constants.REL_TL_TOK2VEC_CONFIG,
+        train_file: Annotated[str, typer.Argument(help=constants.TRAIN_FILE_HELP_STRING)] = constants.REL_TRAIN_FILE,
+        dev_file: Annotated[str, typer.Argument(help=constants.DEV_FILE_HELP_STRING)] = constants.REL_DEV_FILE,
 ):
     """
     Trains the relation extraction (rel) model using transfer learning on the CPU and evaluates it on the dev corpus.
@@ -265,9 +274,9 @@ def rel_tl_cpu(
 
 @rel_app.command("train-gpu")
 def rel_train_gpu(
-        trf_config: str = constants.REL_TRF_CONFIG,
-        train_file: str = constants.REL_TRAIN_FILE,
-        dev_file: str = constants.REL_DEV_FILE,
+        trf_config: Annotated[str, typer.Argument(help=constants.TRF_CONFIG_HELP_STRING)] = constants.REL_TRF_CONFIG,
+        train_file: Annotated[str, typer.Argument(help=constants.TRAIN_FILE_HELP_STRING)] = constants.REL_TRAIN_FILE,
+        dev_file: Annotated[str, typer.Argument(help=constants.DEV_FILE_HELP_STRING)] = constants.REL_DEV_FILE,
 ):
     """
     Trains the relation extraction (rel) model with a Transformer on the GPU and evaluates it on the dev corpus.
@@ -278,9 +287,10 @@ def rel_train_gpu(
 
 @rel_app.command("tl-gpu")
 def rel_tl_gpu(
-        tl_trf_config: str = constants.REL_TL_TRF_CONFIG,
-        train_file: str = constants.REL_TRAIN_FILE,
-        dev_file: str = constants.REL_DEV_FILE,
+        tl_trf_config: Annotated[str, typer.Argument(help=constants.TRF_CONFIG_HELP_STRING)] =
+        constants.REL_TL_TRF_CONFIG,
+        train_file: Annotated[str, typer.Argument(help=constants.TRAIN_FILE_HELP_STRING)] = constants.REL_TRAIN_FILE,
+        dev_file: Annotated[str, typer.Argument(help=constants.DEV_FILE_HELP_STRING)] = constants.REL_DEV_FILE,
 ):
     """
     Trains the relation extraction (rel) model with a Transformer using transfer learning on the GPU and evaluates it
@@ -292,8 +302,9 @@ def rel_tl_gpu(
 
 @rel_app.command("test")
 def rel_test(
-        trained_model: str = constants.REL_TRAINED_MODEL,
-        test_file: str = constants.REL_TEST_FILE,
+        trained_model: Annotated[str, typer.Argument(help=constants.TRAINED_MODEL_HELP_STRING)] =
+        constants.REL_TRAINED_MODEL,
+        test_file: Annotated[str, typer.Argument(help=constants.TEST_FILE_HELP_STRING)] = constants.REL_TEST_FILE,
 ):
     """
     Applies the best relation extraction model to unseen text and measures accuracy at different thresholds.
@@ -305,9 +316,9 @@ def rel_test(
 
 @aux_app.command("extract-paper")
 def aux_extract_paper(
-        paper_path: str,
-        jsonl_path: str,
-        char_limit: int = None,
+        paper_path: Annotated[str, typer.Argument(help=constants.PAPER_PATH_HELP_STRING)],
+        jsonl_path: Annotated[str, typer.Argument(help=constants.JSONL_PATH_HELP_STRING)],
+        char_limit: Annotated[int, typer.Argument(help=constants.CHAR_LIMIT_HELP_STRING)] = None,
 ):
     """
     Converts paper PDF at specified path into a sequence of JSONL files each corresponding to a text chunk, where each
@@ -321,10 +332,10 @@ def aux_extract_paper(
 
 @aux_app.command("extract-elsevier-paper")
 def aux_extract_elsevier_paper(
-        doi_code: str,
-        api_key: str,
-        jsonl_path: str,
-        char_limit: int = None,
+        doi_code: Annotated[str, typer.Argument(help=constants.DOI_CODE_HELP_STRING)],
+        api_key: Annotated[str, typer.Argument(help=constants.API_KEY_HELP_STRING)],
+        jsonl_path: Annotated[str, typer.Argument(help=constants.JSONL_PATH_HELP_STRING)],
+        char_limit: Annotated[int, typer.Argument(help=constants.CHAR_LIMIT_HELP_STRING)] = None,
 ):
     """
     Converts Elsevier paper with specified DOI code into a sequence of JSONL files each corresponding to a text
