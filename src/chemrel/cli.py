@@ -6,6 +6,8 @@ import chemrel.functions.predict as predict
 import chemrel.functions.auxiliary as aux
 from pathlib import Path
 from huggingface_hub import snapshot_download
+from prettytable import PrettyTable
+
 
 app = typer.Typer()
 
@@ -63,7 +65,15 @@ def predict_span(
         sc_model_path: str,
         text: str,
 ):
-    predict.predict_span(os.path.normpath(sc_model_path), text)
+    span_results = predict.predict_span(os.path.normpath(sc_model_path), text)
+    spans_table = PrettyTable()
+    spans_table.field_names = ["#", "Span", "Label", "Confidence"]
+    counter = 1
+    for label in span_results:
+        for span in span_results[label]:
+            spans_table.add_row([counter, span[0], label, span[-1]])
+            counter += 1
+    print(spans_table)
 
 
 @predict_app.command("rel")
@@ -72,7 +82,15 @@ def predict_rel(
         rel_model_path: str,
         text: str,
 ):
-    predict.predict_rel(os.path.normpath(sc_model_path), os.path.normpath(rel_model_path), text)
+    rel_results = predict.predict_rel(os.path.normpath(sc_model_path), os.path.normpath(rel_model_path), text)
+    for rel_type in rel_results:
+        rel_table = PrettyTable()
+        rel_table.field_names = ["#", rel_type[0], rel_type[1], "Confidence"]
+        counter = 1
+        for rel_pair in rel_results[rel_type]:
+            rel_table.add_row([counter, rel_pair[0][0], rel_pair[0][1], rel_pair[1]])
+            counter += 1
+        print(rel_table)
 
 
 # Workflow commands

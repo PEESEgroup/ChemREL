@@ -2,3 +2,4 @@ data
 training
 build
 dist
+__pycache__
