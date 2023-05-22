@@ -4,12 +4,14 @@ Automate and transfer chemical data extraction using span categorization and rel
 
 To initialize the assets required by the CLI, run the following command: 
 
+```console
 $ chemrel init
+```
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI [OPTIONS] COMMAND [ARGS]...
+$ chemrel [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -28,14 +30,14 @@ $ ChemREL-CLI [OPTIONS] COMMAND [ARGS]...
 * `span`: Configure and/or train a span...
 * `workflow`: Run an available workflow.
 
-## `ChemREL-CLI aux`
+## `chemrel aux`
 
 Run one of a number of auxiliary data processing commands.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI aux [OPTIONS] COMMAND [ARGS]...
+$ chemrel aux [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -47,7 +49,7 @@ $ ChemREL-CLI aux [OPTIONS] COMMAND [ARGS]...
 * `extract-elsevier-paper`: Converts Elsevier paper with specified DOI...
 * `extract-paper`: Converts paper PDF at specified path into...
 
-### `ChemREL-CLI aux extract-elsevier-paper`
+### `chemrel aux extract-elsevier-paper`
 
 Converts Elsevier paper with specified DOI code into a sequence of JSONL files each corresponding to a text
 chunk, where each JSONL line is tokenized by sentence. Example: if provided path is `dir/file` and the Paper text
@@ -57,7 +59,7 @@ text contains one chunk, `dir/file.jsonl` will be generated.
 **Usage**:
 
 ```console
-$ ChemREL-CLI aux extract-elsevier-paper [OPTIONS] DOI_CODE API_KEY JSONL_PATH [CHAR_LIMIT]
+$ chemrel aux extract-elsevier-paper [OPTIONS] DOI_CODE API_KEY JSONL_PATH [CHAR_LIMIT]
 ```
 
 **Arguments**:
@@ -71,7 +73,7 @@ $ ChemREL-CLI aux extract-elsevier-paper [OPTIONS] DOI_CODE API_KEY JSONL_PATH [
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI aux extract-paper`
+### `chemrel aux extract-paper`
 
 Converts paper PDF at specified path into a sequence of JSONL files each corresponding to a text chunk, where each
     JSONL line is tokenized by sentence. Example: if provided path is `dir/file` and the Paper text contains two
@@ -81,7 +83,7 @@ Converts paper PDF at specified path into a sequence of JSONL files each corresp
 **Usage**:
 
 ```console
-$ ChemREL-CLI aux extract-paper [OPTIONS] PAPER_PATH JSONL_PATH [CHAR_LIMIT]
+$ chemrel aux extract-paper [OPTIONS] PAPER_PATH JSONL_PATH [CHAR_LIMIT]
 ```
 
 **Arguments**:
@@ -94,28 +96,28 @@ $ ChemREL-CLI aux extract-paper [OPTIONS] PAPER_PATH JSONL_PATH [CHAR_LIMIT]
 
 * `--help`: Show this message and exit.
 
-## `ChemREL-CLI clean`
+## `chemrel clean`
 
 Removes intermediate files to start data preparation and training from a clean slate.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI clean [OPTIONS]
+$ chemrel clean [OPTIONS]
 ```
 
 **Options**:
 
 * `--help`: Show this message and exit.
 
-## `ChemREL-CLI init`
+## `chemrel init`
 
 Initializes files required by package at given path.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI init [OPTIONS] [PATH]
+$ chemrel init [OPTIONS] [PATH]
 ```
 
 **Arguments**:
@@ -126,14 +128,14 @@ $ ChemREL-CLI init [OPTIONS] [PATH]
 
 * `--help`: Show this message and exit.
 
-## `ChemREL-CLI predict`
+## `chemrel predict`
 
 Predicts the spans and/or relations in a given text using the given models.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI predict [OPTIONS] COMMAND [ARGS]...
+$ chemrel predict [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -145,7 +147,7 @@ $ ChemREL-CLI predict [OPTIONS] COMMAND [ARGS]...
 * `rel`: Predicts spans and the relations between...
 * `span`: Predicts spans contained in given text and...
 
-### `ChemREL-CLI predict rel`
+### `chemrel predict rel`
 
 Predicts spans and the relations between them contained in given text determined by the given models and prints
 them.
@@ -153,7 +155,7 @@ them.
 **Usage**:
 
 ```console
-$ ChemREL-CLI predict rel [OPTIONS] SC_MODEL_PATH REL_MODEL_PATH TEXT
+$ chemrel predict rel [OPTIONS] SC_MODEL_PATH REL_MODEL_PATH TEXT
 ```
 
 **Arguments**:
@@ -166,14 +168,14 @@ $ ChemREL-CLI predict rel [OPTIONS] SC_MODEL_PATH REL_MODEL_PATH TEXT
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI predict span`
+### `chemrel predict span`
 
 Predicts spans contained in given text and prints them.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI predict span [OPTIONS] SC_MODEL_PATH TEXT
+$ chemrel predict span [OPTIONS] SC_MODEL_PATH TEXT
 ```
 
 **Arguments**:
@@ -185,14 +187,14 @@ $ ChemREL-CLI predict span [OPTIONS] SC_MODEL_PATH TEXT
 
 * `--help`: Show this message and exit.
 
-## `ChemREL-CLI rel`
+## `chemrel rel`
 
 Configure and/or train a relation extraction model.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI rel [OPTIONS] COMMAND [ARGS]...
+$ chemrel rel [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -208,14 +210,14 @@ $ ChemREL-CLI rel [OPTIONS] COMMAND [ARGS]...
 * `train-cpu`: Trains the relation extraction (rel) model...
 * `train-gpu`: Trains the relation extraction (rel) model...
 
-### `ChemREL-CLI rel process-data`
+### `chemrel rel process-data`
 
 Parses the gold-standard annotations from the Prodigy annotations.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI rel process-data [OPTIONS] [ANNOTATIONS_FILE] [TRAIN_FILE] [DEV_FILE] [TEST_FILE]
+$ chemrel rel process-data [OPTIONS] [ANNOTATIONS_FILE] [TRAIN_FILE] [DEV_FILE] [TEST_FILE]
 ```
 
 **Arguments**:
@@ -229,14 +231,14 @@ $ ChemREL-CLI rel process-data [OPTIONS] [ANNOTATIONS_FILE] [TRAIN_FILE] [DEV_FI
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI rel test`
+### `chemrel rel test`
 
 Applies the best relation extraction model to unseen text and measures accuracy at different thresholds.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI rel test [OPTIONS] [TRAINED_MODEL] [TEST_FILE]
+$ chemrel rel test [OPTIONS] [TRAINED_MODEL] [TEST_FILE]
 ```
 
 **Arguments**:
@@ -248,14 +250,14 @@ $ ChemREL-CLI rel test [OPTIONS] [TRAINED_MODEL] [TEST_FILE]
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI rel tl-cpu`
+### `chemrel rel tl-cpu`
 
 Trains the relation extraction (rel) model using transfer learning on the CPU and evaluates it on the dev corpus.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI rel tl-cpu [OPTIONS] [TL_TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
+$ chemrel rel tl-cpu [OPTIONS] [TL_TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
 ```
 
 **Arguments**:
@@ -268,7 +270,7 @@ $ ChemREL-CLI rel tl-cpu [OPTIONS] [TL_TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI rel tl-gpu`
+### `chemrel rel tl-gpu`
 
 Trains the relation extraction (rel) model with a Transformer using transfer learning on the GPU and evaluates it
 on the dev corpus.
@@ -276,7 +278,7 @@ on the dev corpus.
 **Usage**:
 
 ```console
-$ ChemREL-CLI rel tl-gpu [OPTIONS] [TL_TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
+$ chemrel rel tl-gpu [OPTIONS] [TL_TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
 ```
 
 **Arguments**:
@@ -289,14 +291,14 @@ $ ChemREL-CLI rel tl-gpu [OPTIONS] [TL_TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI rel train-cpu`
+### `chemrel rel train-cpu`
 
 Trains the relation extraction (rel) model on the CPU and evaluates it on the dev corpus.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI rel train-cpu [OPTIONS] [TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
+$ chemrel rel train-cpu [OPTIONS] [TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
 ```
 
 **Arguments**:
@@ -309,14 +311,14 @@ $ ChemREL-CLI rel train-cpu [OPTIONS] [TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI rel train-gpu`
+### `chemrel rel train-gpu`
 
 Trains the relation extraction (rel) model with a Transformer on the GPU and evaluates it on the dev corpus.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI rel train-gpu [OPTIONS] [TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
+$ chemrel rel train-gpu [OPTIONS] [TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
 ```
 
 **Arguments**:
@@ -329,14 +331,14 @@ $ ChemREL-CLI rel train-gpu [OPTIONS] [TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
 
 * `--help`: Show this message and exit.
 
-## `ChemREL-CLI span`
+## `chemrel span`
 
 Configure and/or train a span categorization model.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI span [OPTIONS] COMMAND [ARGS]...
+$ chemrel span [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -352,28 +354,28 @@ $ ChemREL-CLI span [OPTIONS] COMMAND [ARGS]...
 * `train-cpu`: Trains the span categorization (sc) model...
 * `train-gpu`: Trains the span categorization (sc) model...
 
-### `ChemREL-CLI span process-data`
+### `chemrel span process-data`
 
 Instructs to use the Prodigy function (data-to-spacy) for data processing.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI span process-data [OPTIONS]
+$ chemrel span process-data [OPTIONS]
 ```
 
 **Options**:
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI span test`
+### `chemrel span test`
 
 Applies the best span categorization model to unseen text and measures accuracy at different thresholds.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI span test [OPTIONS] [TRAINED_MODEL] [TEST_FILE]
+$ chemrel span test [OPTIONS] [TRAINED_MODEL] [TEST_FILE]
 ```
 
 **Arguments**:
@@ -385,14 +387,14 @@ $ ChemREL-CLI span test [OPTIONS] [TRAINED_MODEL] [TEST_FILE]
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI span tl-cpu`
+### `chemrel span tl-cpu`
 
 Trains the span categorization (sc) model using transfer learning on the CPU and evaluates it on the dev corpus.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI span tl-cpu [OPTIONS] [TL_TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
+$ chemrel span tl-cpu [OPTIONS] [TL_TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
 ```
 
 **Arguments**:
@@ -405,14 +407,14 @@ $ ChemREL-CLI span tl-cpu [OPTIONS] [TL_TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI span tl-gpu`
+### `chemrel span tl-gpu`
 
 Trains the span categorization (sc) model using transfer learning on the GPU and evaluates it on the dev corpus.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI span tl-gpu [OPTIONS] [TL_TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
+$ chemrel span tl-gpu [OPTIONS] [TL_TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
 ```
 
 **Arguments**:
@@ -425,14 +427,14 @@ $ ChemREL-CLI span tl-gpu [OPTIONS] [TL_TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI span train-cpu`
+### `chemrel span train-cpu`
 
 Trains the span categorization (sc) model on the CPU and evaluates it on the dev corpus.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI span train-cpu [OPTIONS] [TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
+$ chemrel span train-cpu [OPTIONS] [TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
 ```
 
 **Arguments**:
@@ -445,14 +447,14 @@ $ ChemREL-CLI span train-cpu [OPTIONS] [TOK2VEC_CONFIG] [TRAIN_FILE] [DEV_FILE]
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI span train-gpu`
+### `chemrel span train-gpu`
 
 Trains the span categorization (sc) model on the GPU and evaluates it on the dev corpus.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI span train-gpu [OPTIONS] [TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
+$ chemrel span train-gpu [OPTIONS] [TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
 ```
 
 **Arguments**:
@@ -465,14 +467,14 @@ $ ChemREL-CLI span train-gpu [OPTIONS] [TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
 
 * `--help`: Show this message and exit.
 
-## `ChemREL-CLI workflow`
+## `chemrel workflow`
 
 Run an available workflow.
 
 **Usage**:
 
 ```console
-$ ChemREL-CLI workflow [OPTIONS] COMMAND [ARGS]...
+$ chemrel workflow [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -484,7 +486,7 @@ $ ChemREL-CLI workflow [OPTIONS] COMMAND [ARGS]...
 * `all-cpu`: Executes a series of commands to process...
 * `all-gpu`: Executes a series of commands to process...
 
-### `ChemREL-CLI workflow all-cpu`
+### `chemrel workflow all-cpu`
 
 Executes a series of commands to process data, train, and test the span categorization (sc) and relation
 extraction (rel) models using the CPU.
@@ -492,14 +494,14 @@ extraction (rel) models using the CPU.
 **Usage**:
 
 ```console
-$ ChemREL-CLI workflow all-cpu [OPTIONS]
+$ chemrel workflow all-cpu [OPTIONS]
 ```
 
 **Options**:
 
 * `--help`: Show this message and exit.
 
-### `ChemREL-CLI workflow all-gpu`
+### `chemrel workflow all-gpu`
 
 Executes a series of commands to process data, train, and test the span categorization (sc) and relation
 extraction (rel) models using the GPU.
@@ -507,7 +509,7 @@ extraction (rel) models using the GPU.
 **Usage**:
 
 ```console
-$ ChemREL-CLI workflow all-gpu [OPTIONS]
+$ chemrel workflow all-gpu [OPTIONS]
 ```
 
 **Options**:
