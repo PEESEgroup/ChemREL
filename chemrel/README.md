@@ -6,7 +6,9 @@ Automate and transfer chemical data extraction using span categorization and rel
 
 To initialize the assets required by the CLI, run the following command: 
 
+```console
 $ chemrel init
+```
 
 **Usage**:
 
