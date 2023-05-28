@@ -46,10 +46,11 @@ def init(path: str = typer.Argument(default="./", help="File path in which to in
     Initializes files required by package at given path.
     """
     print("Creating directories...")
-    for dir in ["configs", "assets", "scdata", "sctraining", "reldata", "reltraining"]:
+    for dir in ["sctraining", "reltraining"]:
         Path(f"{os.path.normpath(path)}/{dir}").mkdir(parents=True, exist_ok=True)
-    print("Downloading models...")
-    snapshot_download(repo_id="AbdulelahAlshehri/chemrelmodels", local_dir= "./", ignore_patterns=["*.md"])
+    print("Downloading files...")
+    snapshot_download(repo_id="AbdulelahAlshehri/chemrelmodels", local_dir=path,
+                      ignore_patterns=["*.md", ".gitattributes"])
     print("Complete.")
     if path != "./": print(f"Note: Run `cd {path}` before running other commands.")
 
