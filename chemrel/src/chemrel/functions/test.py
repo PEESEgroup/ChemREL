@@ -7,7 +7,7 @@ from spacy.training.example import Example
 
 
 # Import custom functions
-from model import build_relation_model, build_classification_layer, build_instances, build_tensors
+from chemrel.functions.model import build_relation_model, build_classification_layer, build_instances, build_tensors
 
 from relutils import display_output, display_scores
 

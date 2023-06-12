@@ -9,10 +9,14 @@ from collections import defaultdict
 def predict_span(sc_model, text):
     """
     Predicts spans contained in given text determined by the given span categorization model.
+
     :param sc_model: File path of span categorization model to be used
+    :type sc_model: str
     :param text: Text content to predict spans within
+    :type text: str
     :return: Dictionary with each key corresponding to a span label, and each value being a list of tuples containing
-    the span text and prediction confidence score of that label
+        the span text and prediction confidence score of that label
+    :rtype: dict
     """
     nlp = spacy.load(sc_model)
     doc = nlp(text)
@@ -27,11 +31,16 @@ def predict_rel(sc_model, rel_model, text):
     """
     Predicts spans and the relations between them contained in given text determined by the given span categorization
     and relation extraction model.
+
     :param sc_model: File path of span categorization model to be used
+    :type sc_model: str
     :param rel_model: File path of relation extraction model to be used
+    :type rel_model: str
     :param text: Text content to predict spans and relations within
+    :type text: str
     :return: Dictionary with each key being a tuple of span labels for which a relation exists, and each value being a
-    list of tuples containing a tuple of the related span texts and prediction confidence score of that relation
+        list of tuples containing a tuple of the related span texts and prediction confidence score of that relation
+    :rtype: dict
     """
     nlp = spacy.load(sc_model)
     doc = nlp(text)

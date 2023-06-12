@@ -11,9 +11,13 @@ from nltk.tokenize import sent_tokenize
 def extract_paper(paper_path, char_limit=None):
     """
     Converts paper PDF at specified path into a Paper object.
+
     :param paper_path: File path of paper PDF
+    :type paper_path: str
     :param char_limit: Character limit of each text chunk in generated Paper object, default is None
+    :type char_limit: int, optional
     :return: Paper object containing text from specified paper PDF, chunked by character limit
+    :rtype: auxiliary.Paper
     """
     doc = fitz.open(paper_path)
     filename = os.path.basename(paper_path)
@@ -28,10 +32,15 @@ def extract_paper(paper_path, char_limit=None):
 def get_elsevier_paper(doi_code, api_key, char_limit=None):
     """
     Converts Elsevier paper with specified DOI code into a Paper object.
+
     :param doi_code: DOI code of paper, not in URL form
+    :type doi_code: str
     :param api_key: Elsevier API key
+    :type api_key: str
     :param char_limit: Character limit of each text chunk in generated Paper object, default is None
+    :type char_limit: int, optional
     :return: Paper object containing text from specified Elsevier paper with given DOI, chunked by character limit
+    :rtype: auxiliary.Paper
     """
     endpoint = f"https://api.elsevier.com/content/article/doi/{doi_code}"
     headers = {
@@ -52,8 +61,11 @@ def get_elsevier_paper(doi_code, api_key, char_limit=None):
 def find_doi(raw_paper):
     """
     Attempts to find DOI link in paper. Relies on assumption that DOI is present within the first page of the paper.
+
     :param raw_paper: Raw fitz.Paper object
+    :type raw_paper: fitz.Paper
     :return: URL link of paper DOI found on first page of paper, or "DOI NOT FOUND" if no DOI found
+    :rtype: str
     """
     links = list(raw_paper[0].links(kinds=(fitz.LINK_URI,)))
     for link in links[::-1]:
@@ -81,9 +93,12 @@ class Paper:
     def build_text(self, subtext, char_limit):
         """
         Appends provided subtext to Paper text content.
+
         :param subtext: Subtext to append to text content
+        :type subtext: list
         :param char_limit: Character limit of each text chunk to be appended
-        :return: None
+        :type char_limit: int, optional
+        :rtype: None
         """
         if char_limit is None:
             if len(self.text) == 0:
@@ -103,8 +118,10 @@ class Paper:
         JSONL line is tokenized by sentence. Example: if provided path is `dir/file.jsonl` and the Paper text contains two
         chunks, files `dir/file_1.jsonl` and `dir/file_2.jsonl` will be generated; otherwise, if the Paper text contains
         one chunk, `dir/file.jsonl` will be generated.
+
         :param jsonl_path: Filepath to save JSONL files to, ignores filename extension
-        :return: None
+        :type jsonl_path: str
+        :rtype: None
         """
         if len(self.text) <= 1:
             suffices = [""]

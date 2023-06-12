@@ -6,7 +6,7 @@ from spacy.tokens import DocBin, Doc
 from spacy.training.example import Example
 
 # Import custom functions
-from pipeline import relation_scorer
+from chemrel.functions.pipeline import relation_scorer
 
 
 # Function to display the output for a given gold_doc and predicted_doc
