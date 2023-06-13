@@ -85,4 +85,4 @@ You can then reference any available functions. For example, to call the predict
 results = functions.predict_span("/example/model/path", "Example text string to predict.")
 ```
 
-View the [ChemREL Methods Reference]() for a full list of importable methods.
+View the [ChemREL Methods Reference](https://hl3c.github.io/ChemREL) for a full list of importable methods.
