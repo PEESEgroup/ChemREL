@@ -14,7 +14,7 @@ To install and set up ChemREL, see the [Setup](#setup) section of this file. The
 additional documentation.
 
 + [ChemREL CLI Reference](chemrel/README.md) - Complete documentation of all available CLI commands.
-+ [ChemREL Methods Reference]() - Complete documentation of ChemREL Python methods which are intended to be importable
++ [ChemREL Methods Reference](https://hl3c.github.io/ChemREL) - Complete documentation of ChemREL Python methods which are intended to be importable
   in your own code.
 + [Toy Jupyter Notebook](toy_notebook.ipynb) - Jupyter notebook demonstrating usage of importable prediction functions.
 
