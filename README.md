@@ -14,8 +14,8 @@ To install and set up ChemREL, see the [Setup](#setup) section of this file. The
 additional documentation.
 
 + [ChemREL CLI Reference](chemrel/README.md) - Complete documentation of all available CLI commands.
-+ [ChemREL Methods Reference](https://hl3c.github.io/ChemREL) - Complete documentation of ChemREL Python methods which are intended to be importable
-  in your own code.
++ [ChemREL Methods Reference](https://hl3c.github.io/ChemREL) - Complete documentation of ChemREL Python methods which
++ are intended to be importable in your own code.
 + [Toy Jupyter Notebook](toy_notebook.ipynb) - Jupyter notebook demonstrating usage of importable prediction functions.
 
 ## Setup
@@ -74,15 +74,18 @@ View the [ChemREL CLI Reference](chemrel/README.md) for a full list of available
 
 ### Importing Methods
 
-In addition to the CLI, the ChemREL PIP package exposes a number of functions which can be imported from within your own code.
-You can import the functions with the following line.
+In addition to the CLI, the ChemREL PIP package exposes a number of functions which can be imported from within your own
+code.
+You must first import the specific submodule containing your desired function from the `functions` package. For example,
+to import the `auxiliary` submodule, run the following line.
 ```python
-from chemrel import functions
+from chemrel.functions import auxiliary
 ```
 
-You can then reference any available functions. For example, to call the predict span function, you can run the following.
+You can then reference any available functions within the `auxiliary` submodule. For example, to call the
+`extract_paper()` function, you can run the following.
 ```python
-results = functions.predict_span("/example/model/path", "Example text string to predict.")
+paper = auxiliary.extract_paper("/example/paper/path")
 ```
 
 View the [ChemREL Methods Reference](https://hl3c.github.io/ChemREL) for a full list of importable methods.
