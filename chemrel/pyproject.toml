@@ -1,6 +1,6 @@
 [project]
 name = "chemrel"
-version = "0.0.2"
+version = "0.0.3"
 description = "A project which focuses on automating and transferring chemical data extraction using span categorization and relation extraction models."
 dependencies = [
     "huggingface-hub",
@@ -10,9 +10,9 @@ dependencies = [
     "jsonlines",
     "PyMuPDF",
     "typer",
-    "urllib3",
+    "urllib3 < 2.0",
     "regex",
-    "spacy",
+    "spacy >= 3.2.4, <= 3.2.6",
 ]
 readme = "README.md"
 
