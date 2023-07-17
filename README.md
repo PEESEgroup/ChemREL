@@ -23,7 +23,24 @@ ChemREL can be installed via the command line from the PyPI index using the `pip
 ChemREL CLI can be invoked from any directory in the command line using the `chemrel` command (but you should `cd` into
 the proper directory first, as described below).
 
-To install ChemREL, open the command line and run the following.
+To ensure that the `chemrel` keyword is recognized by your system, it is recommended that you create a new virtual
+environment before installing ChemREL. To do so, open the command line and run the following.
+```console
+python -m venv venv
+```
+
+Next, activate the environment by running 
+```console
+source venv/bin/activate
+```
+if using a MacOS (unix-like) or Linux machine, or
+```console
+venv\Scripts\activate
+```
+if using a Windows machine. Your virtual environment should now be active, and the prompt in the command line should be 
+prefaced by the name of your environment, `venv`.
+
+Now, to install ChemREL in the environment, run the following.
 ```console
 pip install chemrel
 ```
