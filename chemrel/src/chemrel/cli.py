@@ -25,9 +25,6 @@ app = typer.Typer(help=landing_text)
 predict_app = typer.Typer(help="Predicts the spans and/or relations in a given text using the given models.")
 app.add_typer(predict_app, name="predict")
 
-workflow_app = typer.Typer(help="Run an available workflow.")
-app.add_typer(workflow_app, name="workflow")
-
 span_app = typer.Typer(help="Configure and/or train a span categorization model.")
 app.add_typer(span_app, name="span")
 
@@ -103,62 +100,6 @@ def predict_rel(
             rel_table.add_row(str(counter), rel_pair[0][0], rel_pair[0][1], str(rel_pair[1]))
             counter += 1
         print(rel_table)
-
-
-# Workflow commands
-
-@workflow_app.command("all-gpu")
-def workflow_all_gpu():
-    """
-    Executes a series of commands to process data, train, and test the span categorization (sc) and relation
-    extraction (rel) models using the GPU.
-    """
-    print("Running `span process-data`...")
-    span_process_data()
-    print("Running `span train-cpu`...")
-    span_train_cpu()
-    print("Running `span tl-cpu`...")
-    span_tl_cpu()
-    print("Running `span test`...")
-    span_test()
-    print("Running `rel process-data`...")
-    rel_process_data()
-    print("Running `rel train-cpu`...")
-    rel_train_cpu()
-    print("Running `rel tl-cpu`...")
-    rel_tl_cpu()
-    print("Running `rel test`...")
-    rel_test()
-    print("Running `clean`...")
-    clean()
-    print("Complete.")
-
-
-@workflow_app.command("all-cpu")
-def workflow_all_cpu():
-    """
-    Executes a series of commands to process data, train, and test the span categorization (sc) and relation
-    extraction (rel) models using the CPU.
-    """
-    print("Running `span process-data`...")
-    span_process_data()
-    print("Running `span train-gpu`...")
-    span_train_gpu()
-    print("Running `span tl-gpu`...")
-    span_tl_gpu()
-    print("Running `span test`...")
-    span_test()
-    print("Running `rel process-data`...")
-    rel_process_data()
-    print("Running `rel train-gpu`...")
-    rel_train_gpu()
-    print("Running `rel tl-gpu`...")
-    rel_tl_gpu()
-    print("Running `rel test`...")
-    rel_test()
-    print("Running `clean`...")
-    clean()
-    print("Complete.")
 
 
 # Span cat commands

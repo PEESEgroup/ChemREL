@@ -30,7 +30,6 @@ $ chemrel [OPTIONS] COMMAND [ARGS]...
 * `predict`: Predicts the spans and/or relations in a...
 * `rel`: Configure and/or train a relation...
 * `span`: Configure and/or train a span...
-* `workflow`: Run an available workflow.
 
 ## `chemrel aux`
 
@@ -464,55 +463,6 @@ $ chemrel span train-gpu [OPTIONS] [TRF_CONFIG] [TRAIN_FILE] [DEV_FILE]
 * `[TRF_CONFIG]`: File path of config file for transformer span categorization model  [default: configs/sc_trf.cfg]
 * `[TRAIN_FILE]`: File path of training data corpus  [default: scdata/train.spacy]
 * `[DEV_FILE]`: File path of dev corpus  [default: scdata/dev.spacy]
-
-**Options**:
-
-* `--help`: Show this message and exit.
-
-## `chemrel workflow`
-
-Run an available workflow.
-
-**Usage**:
-
-```console
-$ chemrel workflow [OPTIONS] COMMAND [ARGS]...
-```
-
-**Options**:
-
-* `--help`: Show this message and exit.
-
-**Commands**:
-
-* `all-cpu`: Executes a series of commands to process...
-* `all-gpu`: Executes a series of commands to process...
-
-### `chemrel workflow all-cpu`
-
-Executes a series of commands to process data, train, and test the span categorization (sc) and relation
-extraction (rel) models using the CPU.
-
-**Usage**:
-
-```console
-$ chemrel workflow all-cpu [OPTIONS]
-```
-
-**Options**:
-
-* `--help`: Show this message and exit.
-
-### `chemrel workflow all-gpu`
-
-Executes a series of commands to process data, train, and test the span categorization (sc) and relation
-extraction (rel) models using the GPU.
-
-**Usage**:
-
-```console
-$ chemrel workflow all-gpu [OPTIONS]
-```
 
 **Options**:
 
