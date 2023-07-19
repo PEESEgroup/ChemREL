@@ -1,6 +1,6 @@
 [project]
 name = "chemrel"
-version = "0.0.3"
+version = "0.0.4"
 description = "A project which focuses on automating and transferring chemical data extraction using span categorization and relation extraction models."
 dependencies = [
     "huggingface-hub",
