@@ -1,0 +1,21 @@
+functions package
+=================
+
+Submodules
+----------
+
+functions.auxiliary module
+--------------------------
+
+.. automodule:: functions.auxiliary
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+functions.predict module
+------------------------
+
+.. automodule:: functions.predict
+   :members:
+   :undoc-members:
+   :show-inheritance:
