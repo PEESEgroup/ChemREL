@@ -12,7 +12,7 @@ dependencies = [
     "typer",
     "urllib3 < 2.0",
     "regex",
-    "spacy[cuda]",
+    "spacy",
     "spacy-transformers"
 ]
 readme = "README.md"
