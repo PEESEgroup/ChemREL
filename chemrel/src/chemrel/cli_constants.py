@@ -1,4 +1,5 @@
 ANNOTATIONS = "assets/goldrels.jsonl"
+GPU_ID = "0"
 SC_TOK2VEC_CONFIG = "configs/sc_tok2vec.cfg"
 SC_TL_TOK2VEC_CONFIG = "configs/sc_TL_tok2vec.cfg"
 SC_TRF_CONFIG = "configs/sc_trf.cfg"
@@ -25,6 +26,7 @@ TRF_CONFIG_HELP_STRING = "File path of config file for transformer span categori
 TRAINED_MODEL_HELP_STRING = "File path of trained model to be used"
 SC_MODEL_PATH_HELP_STRING = "File path of span categorization model to be used"
 REL_MODEL_PATH_HELP_STRING = "File path of relation extraction model to be used"
+GPU_ID_HELP_STRING = "The GPU device identifier to be used"
 TEXT_HELP_STRING = "Text content to predict spans within"
 ANNOTATIONS_FILE_HELP_STRING = "File path of Prodigy annotations"
 PAPER_PATH_HELP_STRING = "File path of paper PDF"
