@@ -1,7 +1,8 @@
 [project]
 name = "chemrel"
-version = "0.0.5"
+version = "0.0.6"
 description = "A project which focuses on automating and transferring chemical data extraction using span categorization and relation extraction models."
+requires-python = ">=3.8"
 dependencies = [
     "huggingface-hub",
     "rich",
