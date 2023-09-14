@@ -11,8 +11,8 @@ from chemrel.functions.model import build_relation_model, build_classification_l
 
 from chemrel.functions.relutils import display_output, display_scores
 
-# Main function that accepts pipeline_path, testing_data, and show_output as arguments
-def main(pipeline_path: Path, testing_data: Path, show_output: bool):
+# Test function that accepts pipeline_path, testing_data, and show_output as arguments
+def test(pipeline_path: Path, testing_data: Path, show_output: bool):
     # Load the trained NLP pipeline
     language_model = spacy.load(pipeline_path)
 
@@ -49,7 +49,3 @@ def main(pipeline_path: Path, testing_data: Path, show_output: bool):
     # Display the scores of the trained model
     print("\nTrained model results:")
     display_scores(example_set, score_thresholds)
-
-
-if __name__ == "__main__":
-    typer.run(main)

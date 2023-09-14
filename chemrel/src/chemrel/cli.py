@@ -2,13 +2,13 @@ import typer
 from rich import print
 from rich.table import Table
 import os
-import glob
 import chemrel.cli_constants as constants
 import chemrel.functions.predict as predict
 import chemrel.functions.auxiliary as aux
 import chemrel.functions.parser as parser
 import chemrel.functions.test as test
 from pathlib import Path
+from shutil import rmtree
 from huggingface_hub import snapshot_download
 
 
@@ -59,12 +59,14 @@ def clean():
     """
     Removes intermediate files to start data preparation and training from a clean slate.
     """
-    dirs = ["reldata/*", "scdata/*", "reltraining/*", "sctraining/*"]
+    dirs = ["reldata", "scdata", "reltraining", "sctraining"]
     for d in dirs:
         print(f"Cleaning `{d}`...")
-        files = glob.glob(d)
-        for f in files:
-            os.remove(f)
+        for path in Path(d).glob("**/*"):
+            if path.is_file():
+                path.unlink()
+            elif path.is_dir():
+                rmtree(path)
     print("Cleaned.")
 
 
@@ -202,7 +204,7 @@ def rel_process_data(
     """
     Parses the gold-standard annotations from the Prodigy annotations.
     """
-    parser.main(Path(annotations_file), Path(train_file), Path(dev_file), Path(test_file))
+    parser.parse(Path(annotations_file), Path(train_file), Path(dev_file), Path(test_file))
 
 
 @rel_app.command("train-cpu")
@@ -268,7 +270,7 @@ def rel_test(
     """
     Applies the best relation extraction model to unseen text and measures accuracy at different thresholds.
     """
-    test.main(Path(trained_model), Path(test_file), False)
+    test.test(Path(trained_model), Path(test_file), False)
 
 
 # Auxiliary commands

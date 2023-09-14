@@ -19,8 +19,8 @@ MAP_LABELS = {
     "CHEMP": "CHEMP"                          # Mapping a label to itself
 }
 
-# Defining the main function with four parameters
-def main(json_loc: Path, train_file: Path, dev_file: Path, test_file: Path):
+# Defining the parser function with four parameters
+def parse(json_loc: Path, train_file: Path, dev_file: Path, test_file: Path):
     """
     Creating the corpus from the Prodigy annotations.
     """
@@ -202,7 +202,3 @@ def main(json_loc: Path, train_file: Path, dev_file: Path, test_file: Path):
         f"{len(docs['test'])} test sentences from {len(ids['test'])} articles, "
         f"{count_pos['test']}/{count_all['test']} pos instances."
     )
-
-
-if __name__ == "__main__":
-    typer.run(main)
