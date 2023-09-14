@@ -9,7 +9,7 @@ from spacy.training.example import Example
 # Import custom functions
 from chemrel.functions.model import build_relation_model, build_classification_layer, build_instances, build_tensors
 
-from relutils import display_output, display_scores
+from chemrel.functions.relutils import display_output, display_scores
 
 # Main function that accepts pipeline_path, testing_data, and show_output as arguments
 def main(pipeline_path: Path, testing_data: Path, show_output: bool):

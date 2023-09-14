@@ -6,6 +6,8 @@ import glob
 import chemrel.cli_constants as constants
 import chemrel.functions.predict as predict
 import chemrel.functions.auxiliary as aux
+import chemrel.functions.parser as parser
+import chemrel.functions.test as test
 from pathlib import Path
 from huggingface_hub import snapshot_download
 
@@ -200,7 +202,7 @@ def rel_process_data(
     """
     Parses the gold-standard annotations from the Prodigy annotations.
     """
-    os.system(f"python ./functions/parser.py {annotations_file} {train_file} {dev_file} {test_file}")
+    parser.main(Path(annotations_file), Path(train_file), Path(dev_file), Path(test_file))
 
 
 @rel_app.command("train-cpu")
@@ -266,7 +268,7 @@ def rel_test(
     """
     Applies the best relation extraction model to unseen text and measures accuracy at different thresholds.
     """
-    os.system(f"python ./functions/test.py {trained_model} {test_file} False")
+    test.main(Path(trained_model), Path(test_file), False)
 
 
 # Auxiliary commands
