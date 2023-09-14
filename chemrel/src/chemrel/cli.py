@@ -3,6 +3,7 @@ import typer
 from rich import print
 from rich.table import Table
 import os
+import glob
 import chemrel.cli_constants as constants
 import chemrel.functions.predict as predict
 import chemrel.functions.auxiliary as aux
@@ -57,9 +58,13 @@ def clean():
     """
     Removes intermediate files to start data preparation and training from a clean slate.
     """
-    os.system("rm -rf reldata/*")
-    os.system("rm -rf reltraining/*")
-    os.system("rm -rf sctraining/*")
+    dirs = ["reldata/*", "scdata/*", "reltraining/*", "sctraining/*"]
+    for d in dirs:
+        print(f"Cleaning `{d}`...")
+        files = glob.glob(d)
+        for f in files:
+            os.remove(f)
+    print("Cleaned.")
 
 
 # Predict commands
