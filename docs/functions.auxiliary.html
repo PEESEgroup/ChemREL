@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="chemrel.functions" href="modules.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="functions.predict module" href="functions.predict.html" /><link rel="prev" title="functions package" href="functions.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
-        <title>chemrel.functions package - ChemREL 0.0.9 documentation</title>
+        <title>functions.auxiliary module - ChemREL 0.0.10 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">ChemREL 0.0.9 documentation</div></a>
+      <a href="index.html"><div class="brand">ChemREL 0.0.10 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">ChemREL 0.0.9 documentation</span>
+  <span class="sidebar-brand-text">ChemREL 0.0.10 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -156,8 +156,9 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">chemrel.functions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of chemrel.functions</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">chemrel.functions package</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="functions.html">functions package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of functions package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">functions.auxiliary module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.predict.html">functions.predict module</a></li>
 </ul>
 </li>
 </ul>
@@ -194,21 +195,16 @@
           </label>
         </div>
         <article role="main">
-          <section id="chemrel-functions-package">
-<h1>chemrel.functions package<a class="headerlink" href="#chemrel-functions-package" title="Link to this heading">#</a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
-</section>
-<section id="module-chemrel.functions.auxiliary">
-<span id="chemrel-functions-auxiliary-module"></span><h2>chemrel.functions.auxiliary module<a class="headerlink" href="#module-chemrel.functions.auxiliary" title="Link to this heading">#</a></h2>
+          <section id="module-functions.auxiliary">
+<span id="functions-auxiliary-module"></span><h1>functions.auxiliary module<a class="headerlink" href="#module-functions.auxiliary" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="chemrel.functions.auxiliary.Paper">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chemrel.functions.auxiliary.</span></span><span class="sig-name descname"><span class="pre">Paper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chemrel.functions.auxiliary.Paper" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="functions.auxiliary.Paper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">functions.auxiliary.</span></span><span class="sig-name descname"><span class="pre">Paper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.auxiliary.Paper" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class to represent research papers.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="chemrel.functions.auxiliary.Paper.build_text">
-<span class="sig-name descname"><span class="pre">build_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_limit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chemrel.functions.auxiliary.Paper.build_text" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="functions.auxiliary.Paper.build_text">
+<span class="sig-name descname"><span class="pre">build_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_limit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.auxiliary.Paper.build_text" title="Link to this definition">#</a></dt>
 <dd><p>Appends provided subtext to Paper text content.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -224,8 +220,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chemrel.functions.auxiliary.Paper.write_to_jsonl">
-<span class="sig-name descname"><span class="pre">write_to_jsonl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jsonl_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chemrel.functions.auxiliary.Paper.write_to_jsonl" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="functions.auxiliary.Paper.write_to_jsonl">
+<span class="sig-name descname"><span class="pre">write_to_jsonl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jsonl_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.auxiliary.Paper.write_to_jsonl" title="Link to this definition">#</a></dt>
 <dd><p>Outputs text content to a sequence of JSONL files each corresponding to a text chunk, where each
 JSONL line is tokenized by sentence. Example: if provided path is <cite>dir/file.jsonl</cite> and the Paper text contains two
 chunks, files <cite>dir/file_1.jsonl</cite> and <cite>dir/file_2.jsonl</cite> will be generated; otherwise, if the Paper text contains
@@ -243,8 +239,8 @@ one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="chemrel.functions.auxiliary.extract_paper">
-<span class="sig-prename descclassname"><span class="pre">chemrel.functions.auxiliary.</span></span><span class="sig-name descname"><span class="pre">extract_paper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paper_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chemrel.functions.auxiliary.extract_paper" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="functions.auxiliary.extract_paper">
+<span class="sig-prename descclassname"><span class="pre">functions.auxiliary.</span></span><span class="sig-name descname"><span class="pre">extract_paper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paper_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.auxiliary.extract_paper" title="Link to this definition">#</a></dt>
 <dd><p>Converts paper PDF at specified path into a Paper object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -257,14 +253,14 @@ one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
 <dd class="field-even"><p>Paper object containing text from specified paper PDF, chunked by character limit</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#chemrel.functions.auxiliary.Paper" title="chemrel.functions.auxiliary.Paper">auxiliary.Paper</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#functions.auxiliary.Paper" title="functions.auxiliary.Paper">auxiliary.Paper</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="chemrel.functions.auxiliary.find_doi">
-<span class="sig-prename descclassname"><span class="pre">chemrel.functions.auxiliary.</span></span><span class="sig-name descname"><span class="pre">find_doi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_paper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chemrel.functions.auxiliary.find_doi" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="functions.auxiliary.find_doi">
+<span class="sig-prename descclassname"><span class="pre">functions.auxiliary.</span></span><span class="sig-name descname"><span class="pre">find_doi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_paper</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.auxiliary.find_doi" title="Link to this definition">#</a></dt>
 <dd><p>Attempts to find DOI link in paper. Relies on assumption that DOI is present within the first page of the paper.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -280,8 +276,8 @@ one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="chemrel.functions.auxiliary.get_elsevier_paper">
-<span class="sig-prename descclassname"><span class="pre">chemrel.functions.auxiliary.</span></span><span class="sig-name descname"><span class="pre">get_elsevier_paper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doi_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chemrel.functions.auxiliary.get_elsevier_paper" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="functions.auxiliary.get_elsevier_paper">
+<span class="sig-prename descclassname"><span class="pre">functions.auxiliary.</span></span><span class="sig-name descname"><span class="pre">get_elsevier_paper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doi_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.auxiliary.get_elsevier_paper" title="Link to this definition">#</a></dt>
 <dd><p>Converts Elsevier paper with specified DOI code into a Paper object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -295,59 +291,11 @@ one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
 <dd class="field-even"><p>Paper object containing text from specified Elsevier paper with given DOI, chunked by character limit</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#chemrel.functions.auxiliary.Paper" title="chemrel.functions.auxiliary.Paper">auxiliary.Paper</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#functions.auxiliary.Paper" title="functions.auxiliary.Paper">auxiliary.Paper</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-</section>
-<section id="module-chemrel.functions.predict">
-<span id="chemrel-functions-predict-module"></span><h2>chemrel.functions.predict module<a class="headerlink" href="#module-chemrel.functions.predict" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="chemrel.functions.predict.predict_rel">
-<span class="sig-prename descclassname"><span class="pre">chemrel.functions.predict.</span></span><span class="sig-name descname"><span class="pre">predict_rel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sc_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chemrel.functions.predict.predict_rel" title="Link to this definition">#</a></dt>
-<dd><p>Predicts spans and the relations between them contained in given text determined by the given span categorization
-and relation extraction model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>sc_model</strong> (<em>str</em>) – File path of span categorization model to be used</p></li>
-<li><p><strong>rel_model</strong> (<em>str</em>) – File path of relation extraction model to be used</p></li>
-<li><p><strong>text</strong> (<em>str</em>) – Text content to predict spans and relations within</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dictionary with each key being a tuple of span labels for which a relation exists, and each value being a
-list of tuples containing a tuple of the related span texts and prediction confidence score of that relation</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="chemrel.functions.predict.predict_span">
-<span class="sig-prename descclassname"><span class="pre">chemrel.functions.predict.</span></span><span class="sig-name descname"><span class="pre">predict_span</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sc_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chemrel.functions.predict.predict_span" title="Link to this definition">#</a></dt>
-<dd><p>Predicts spans contained in given text determined by the given span categorization model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>sc_model</strong> (<em>str</em>) – File path of span categorization model to be used</p></li>
-<li><p><strong>text</strong> (<em>str</em>) – Text content to predict spans within</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dictionary with each key corresponding to a span label, and each value being a list of tuples containing
-the span text and prediction confidence score of that label</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
 </section>
 
         </article>
@@ -355,15 +303,23 @@ the span text and prediction confidence score of that label</p>
       <footer>
         
         <div class="related-pages">
-          
-          <a class="prev-page" href="modules.html">
+          <a class="next-page" href="functions.predict.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">functions.predict module</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="functions.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">chemrel.functions</div>
+                <div class="title">functions package</div>
                 
               </div>
             </a>
@@ -397,24 +353,15 @@ the span text and prediction confidence score of that label</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">chemrel.functions package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-chemrel.functions.auxiliary">chemrel.functions.auxiliary module</a><ul>
-<li><a class="reference internal" href="#chemrel.functions.auxiliary.Paper"><code class="docutils literal notranslate"><span class="pre">Paper</span></code></a><ul>
-<li><a class="reference internal" href="#chemrel.functions.auxiliary.Paper.build_text"><code class="docutils literal notranslate"><span class="pre">Paper.build_text()</span></code></a></li>
-<li><a class="reference internal" href="#chemrel.functions.auxiliary.Paper.write_to_jsonl"><code class="docutils literal notranslate"><span class="pre">Paper.write_to_jsonl()</span></code></a></li>
+<li><a class="reference internal" href="#">functions.auxiliary module</a><ul>
+<li><a class="reference internal" href="#functions.auxiliary.Paper"><code class="docutils literal notranslate"><span class="pre">Paper</span></code></a><ul>
+<li><a class="reference internal" href="#functions.auxiliary.Paper.build_text"><code class="docutils literal notranslate"><span class="pre">Paper.build_text()</span></code></a></li>
+<li><a class="reference internal" href="#functions.auxiliary.Paper.write_to_jsonl"><code class="docutils literal notranslate"><span class="pre">Paper.write_to_jsonl()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#chemrel.functions.auxiliary.extract_paper"><code class="docutils literal notranslate"><span class="pre">extract_paper()</span></code></a></li>
-<li><a class="reference internal" href="#chemrel.functions.auxiliary.find_doi"><code class="docutils literal notranslate"><span class="pre">find_doi()</span></code></a></li>
-<li><a class="reference internal" href="#chemrel.functions.auxiliary.get_elsevier_paper"><code class="docutils literal notranslate"><span class="pre">get_elsevier_paper()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-chemrel.functions.predict">chemrel.functions.predict module</a><ul>
-<li><a class="reference internal" href="#chemrel.functions.predict.predict_rel"><code class="docutils literal notranslate"><span class="pre">predict_rel()</span></code></a></li>
-<li><a class="reference internal" href="#chemrel.functions.predict.predict_span"><code class="docutils literal notranslate"><span class="pre">predict_span()</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#functions.auxiliary.extract_paper"><code class="docutils literal notranslate"><span class="pre">extract_paper()</span></code></a></li>
+<li><a class="reference internal" href="#functions.auxiliary.find_doi"><code class="docutils literal notranslate"><span class="pre">find_doi()</span></code></a></li>
+<li><a class="reference internal" href="#functions.auxiliary.get_elsevier_paper"><code class="docutils literal notranslate"><span class="pre">get_elsevier_paper()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -426,7 +373,7 @@ the span text and prediction confidence score of that label</p>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=f7cdbf68"></script>
+</div><script src="_static/documentation_options.js?v=a83ce22a"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=32e29ea5"></script>

@@ -2,10 +2,12 @@
 <html class="no-js" lang="en" data-content_root="./">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="functions.auxiliary module" href="functions.auxiliary.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 --><title>Python Module Index - ChemREL 0.0.10 documentation</title>
-<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>functions.predict module - ChemREL 0.0.10 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
     
@@ -132,7 +134,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -153,10 +155,10 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="functions.html">functions package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of functions package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="functions.html">functions package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of functions package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="functions.auxiliary.html">functions.auxiliary module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.predict.html">functions.predict module</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">functions.predict module</a></li>
 </ul>
 </li>
 </ul>
@@ -178,7 +180,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -186,44 +189,59 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          
-<section class="domainindex-section">
-  <h1>Python Module Index</h1>
-  <div class="domainindex-jumpbox"><a href="#cap-f"><strong>f</strong></a></div>
+          <section id="module-functions.predict">
+<span id="functions-predict-module"></span><h1>functions.predict module<a class="headerlink" href="#module-functions.predict" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.predict.predict_rel">
+<span class="sig-prename descclassname"><span class="pre">functions.predict.</span></span><span class="sig-name descname"><span class="pre">predict_rel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sc_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.predict.predict_rel" title="Link to this definition">#</a></dt>
+<dd><p>Predicts spans and the relations between them contained in given text determined by the given span categorization
+and relation extraction model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sc_model</strong> (<em>str</em>) – File path of span categorization model to be used</p></li>
+<li><p><strong>rel_model</strong> (<em>str</em>) – File path of relation extraction model to be used</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – Text content to predict spans and relations within</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with each key being a tuple of span labels for which a relation exists, and each value being a
+list of tuples containing a tuple of the related span texts and prediction confidence score of that relation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="functions.predict.predict_span">
+<span class="sig-prename descclassname"><span class="pre">functions.predict.</span></span><span class="sig-name descname"><span class="pre">predict_span</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sc_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.predict.predict_span" title="Link to this definition">#</a></dt>
+<dd><p>Predicts spans contained in given text determined by the given span categorization model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sc_model</strong> (<em>str</em>) – File path of span categorization model to be used</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – Text content to predict spans within</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with each key corresponding to a span label, and each value being a list of tuples containing
+the span text and prediction confidence score of that label</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<table class="domainindex-table">
-  <tr class="pcap">
-    <td></td><td>&#160;</td><td></td>
-  </tr>
-  <tr class="cap" id="cap-f">
-    <td></td><td><strong>f</strong></td><td></td>
-  </tr>
-  <tr>
-    <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-    <td>
-        <code class="xref">functions</code></td><td>
-    <em></em></td>
-  </tr>
-  <tr class="cg-1">
-    <td></td>
-    <td>&#160;&#160;&#160;
-        <a href="functions.auxiliary.html#module-functions.auxiliary"><code class="xref">functions.auxiliary</code></a></td><td>
-    <em></em></td>
-  </tr>
-  <tr class="cg-1">
-    <td></td>
-    <td>&#160;&#160;&#160;
-        <a href="functions.predict.html#module-functions.predict"><code class="xref">functions.predict</code></a></td><td>
-    <em></em></td>
-  </tr>
-</table>
 
         </article>
       </div>
@@ -231,7 +249,17 @@
         
         <div class="related-pages">
           
-          
+          <a class="prev-page" href="functions.auxiliary.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">functions.auxiliary module</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -250,8 +278,28 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">functions.predict module</a><ul>
+<li><a class="reference internal" href="#functions.predict.predict_rel"><code class="docutils literal notranslate"><span class="pre">predict_rel()</span></code></a></li>
+<li><a class="reference internal" href="#functions.predict.predict_span"><code class="docutils literal notranslate"><span class="pre">predict_span()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
