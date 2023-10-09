@@ -8,6 +8,9 @@ ChemREL is a PIP package that allows you to train chemical data extraction model
 configurations, and data processing methods. ChemREL consists of a command line interface (CLI) through which you can
 run various commands, as well as a collection of different functions that you can import into your own code.
 
+When utilizing or sharing the dataset and models, kindly note they are governed under the CC BY NC 4.0 license as imposed by software and data mining guidelines, permitting only non-commercial applications. They should exclusively be used for research. Any alterations to the models, datasets, or methods must be properly attributed with the following: [ChemREL citation](https://github.com/PEESEgroup/ChemREL/blob/main/LICENSEL)
+
+Content
 
 ### Documentation
 
