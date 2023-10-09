@@ -8,23 +8,6 @@ ChemREL is a PIP package that allows you to train chemical data extraction model
 configurations, and data processing methods. ChemREL consists of a command line interface (CLI) through which you can
 run various commands, as well as a collection of different functions that you can import into your own code.
 
-### Citation
-```
-@article{doi,
-author = {Alshehri, Abdulelah S. and Horstmann, Kai and You, Fengqi},
-title = {A Versatile Deep Learning Pipeline for Transferable Chemical Data Extraction},
-journal = {Submitted to Journal of Chemical Information and Modeling},
-volume = {n/a},
-number = {n/a},
-pages = {n/a},
-keywords = {},
-doi = {https://doi.org/},
-url = {},
-eprint = {},
-abstract = {Abstract}
-}
-
-```
 
 ### Documentation
 
@@ -144,3 +127,21 @@ paper = auxiliary.extract_paper("/example/paper/path")
 ```
 
 View the [ChemREL Methods Reference](https://hl3c.github.io/ChemREL) for a full list of importable methods.
+
+### Citation
+```
+@article{doi,
+author = {Alshehri, Abdulelah S. and Horstmann, Kai and You, Fengqi},
+title = {A Versatile Deep Learning Pipeline for Transferable Chemical Data Extraction},
+journal = {Submitted to Journal of Chemical Information and Modeling},
+volume = {n/a},
+number = {n/a},
+pages = {n/a},
+keywords = {},
+doi = {https://doi.org/},
+url = {},
+eprint = {},
+abstract = {Abstract}
+}
+
+```
