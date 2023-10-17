@@ -26,7 +26,7 @@ def parse(json_loc: Path, train_file: Path, dev_file: Path, test_file: Path):
     """
 
     # Creating a custom extension attribute called "rel" for the Doc class and initializing it to an empty dictionary
-    Doc.set_extension("rel", default={})
+    Doc.set_extension("rel", default={}, force=True)
 
     # Creating a new Vocab object
     vocab = Vocab()
