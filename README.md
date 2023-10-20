@@ -132,17 +132,16 @@ View the [ChemREL Methods Reference](https://peesegroup.github.io/ChemREL/) for 
 ### Citation
 ```
 @article{doi,
-author = {Alshehri, Abdulelah S. and Horstmann, Kai A. and You, Fengqi},
-title = {A Versatile Deep Learning Pipeline for Transferable Chemical Data Extraction},
-journal = {Submitted to Journal of Chemical Information and Modeling},
-volume = {n/a},
-number = {n/a},
-pages = {n/a},
-keywords = {},
-doi = {https://doi.org/},
-url = {},
-eprint = {},
-abstract = {Abstract}
+  author = {Alshehri, Abdulelah S. and Horstmann, Kai A. and You, Fengqi},
+  title = {A Versatile Deep Learning Pipeline for Transferable Chemical Data Extraction},
+  journal = {Submitted to Journal of Chemical Information and Modeling},
+  volume = {n/a},
+  number = {n/a},
+  pages = {n/a},
+  keywords = {},
+  doi = {https://doi.org/},
+  url = {},
+  eprint = {},
+  abstract = {Abstract}
 }
-
 ```
