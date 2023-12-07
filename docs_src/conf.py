@@ -18,11 +18,11 @@ sys.path.insert(0, os.path.abspath('../chemrel/src/chemrel'))
 # -- Project information -----------------------------------------------------
 
 project = 'ChemREL'
-copyright = '2023, PEESE'
+copyright = '2023, PEESE.'
 author = 'PEESE'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.11'
+release = '1.0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -36,6 +36,11 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.githubpages",
 ]
+
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3", None),
+    "fitz": ("https://pymupdf.readthedocs.io/en/latest/", None),
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -52,8 +57,3 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = "furo"
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']

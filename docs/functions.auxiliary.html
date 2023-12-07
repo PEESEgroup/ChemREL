@@ -6,8 +6,8 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="functions.predict module" href="functions.predict.html" /><link rel="prev" title="functions package" href="functions.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
-        <title>functions.auxiliary module - ChemREL 0.0.11 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+        <title>functions.auxiliary module - ChemREL 1.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
     
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">ChemREL 0.0.11 documentation</div></a>
+      <a href="index.html"><div class="brand">ChemREL 1.0.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">ChemREL 0.0.11 documentation</span>
+  <span class="sidebar-brand-text">ChemREL 1.0.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -200,7 +200,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="functions.auxiliary.Paper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">functions.auxiliary.</span></span><span class="sig-name descname"><span class="pre">Paper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.auxiliary.Paper" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A class to represent research papers.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="functions.auxiliary.Paper.build_text">
@@ -209,8 +209,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>subtext</strong> (<em>list</em>) – Subtext to append to text content</p></li>
-<li><p><strong>char_limit</strong> (<em>int</em><em>, </em><em>optional</em>) – Character limit of each text chunk to be appended</p></li>
+<li><p><strong>subtext</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – Subtext to append to text content.</p></li>
+<li><p><strong>char_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>optional</em>) – Character limit of each text chunk to be appended.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -223,12 +223,12 @@
 <dt class="sig sig-object py" id="functions.auxiliary.Paper.write_to_jsonl">
 <span class="sig-name descname"><span class="pre">write_to_jsonl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jsonl_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#functions.auxiliary.Paper.write_to_jsonl" title="Link to this definition">#</a></dt>
 <dd><p>Outputs text content to a sequence of JSONL files each corresponding to a text chunk, where each
-JSONL line is tokenized by sentence. Example: if provided path is <cite>dir/file.jsonl</cite> and the Paper text contains two
-chunks, files <cite>dir/file_1.jsonl</cite> and <cite>dir/file_2.jsonl</cite> will be generated; otherwise, if the Paper text contains
-one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
+JSONL line is tokenized by sentence. Example: if provided path is <code class="docutils literal notranslate"><span class="pre">dir/file.jsonl</span></code> and the Paper text contains
+two chunks, files <code class="docutils literal notranslate"><span class="pre">dir/file_1.jsonl</span></code> and <code class="docutils literal notranslate"><span class="pre">dir/file_2.jsonl</span></code> will be generated; otherwise, if the Paper text
+contains one chunk, <code class="docutils literal notranslate"><span class="pre">dir/file.jsonl</span></code> will be generated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>jsonl_path</strong> (<em>str</em>) – Filepath to save JSONL files to, ignores filename extension</p>
+<dd class="field-odd"><p><strong>jsonl_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Filepath to save JSONL files to, ignores filename extension.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -245,12 +245,12 @@ one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>paper_path</strong> (<em>str</em>) – File path of paper PDF</p></li>
-<li><p><strong>char_limit</strong> (<em>int</em><em>, </em><em>optional</em>) – Character limit of each text chunk in generated Paper object, default is None</p></li>
+<li><p><strong>paper_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – File path of paper PDF.</p></li>
+<li><p><strong>char_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>optional</em>) – Character limit of each text chunk in generated Paper object, default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Paper object containing text from specified paper PDF, chunked by character limit</p>
+<dd class="field-even"><p>Paper object containing text from specified paper PDF, chunked by character limit.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#functions.auxiliary.Paper" title="functions.auxiliary.Paper">auxiliary.Paper</a></p>
@@ -264,13 +264,13 @@ one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
 <dd><p>Attempts to find DOI link in paper. Relies on assumption that DOI is present within the first page of the paper.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>raw_paper</strong> (<em>fitz.Paper</em>) – Raw fitz.Paper object</p>
+<dd class="field-odd"><p><strong>raw_paper</strong> (<a class="reference external" href="https://pymupdf.readthedocs.io/en/latest/document.html#Document" title="(in PyMuPDF v1.23.5)"><em>Document</em></a>) – Raw <code class="xref py py-class docutils literal notranslate"><span class="pre">fitz.Document</span></code> object.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>URL link of paper DOI found on first page of paper, or “DOI NOT FOUND” if no DOI found</p>
+<dd class="field-even"><p>URL link of paper DOI found on first page of paper, or <code class="docutils literal notranslate"><span class="pre">&quot;DOI</span> <span class="pre">NOT</span> <span class="pre">FOUND&quot;</span></code> if no DOI found.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -282,13 +282,13 @@ one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>doi_code</strong> (<em>str</em>) – DOI code of paper, not in URL form</p></li>
-<li><p><strong>api_key</strong> (<em>str</em>) – Elsevier API key</p></li>
-<li><p><strong>char_limit</strong> (<em>int</em><em>, </em><em>optional</em>) – Character limit of each text chunk in generated Paper object, default is None</p></li>
+<li><p><strong>doi_code</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – DOI code of paper, not in URL form.</p></li>
+<li><p><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Elsevier API key.</p></li>
+<li><p><strong>char_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>optional</em>) – Character limit of each text chunk in generated <code class="docutils literal notranslate"><span class="pre">Paper</span></code> object, default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Paper object containing text from specified Elsevier paper with given DOI, chunked by character limit</p>
+<dd class="field-even"><p>Paper object containing text from specified Elsevier paper with given DOI, chunked by character limit.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#functions.auxiliary.Paper" title="functions.auxiliary.Paper">auxiliary.Paper</a></p>
@@ -327,7 +327,7 @@ one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2023, PEESE
+                Copyright &#169; 2023, PEESE.
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -373,7 +373,7 @@ one chunk, <cite>dir/file.jsonl</cite> will be generated.</p>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=0c446633"></script>
+</div><script src="_static/documentation_options.js?v=292eb321"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=32e29ea5"></script>

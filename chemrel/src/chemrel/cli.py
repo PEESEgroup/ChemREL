@@ -17,7 +17,7 @@ ChemREL Command Line Interface (CLI).
 
 Automate and transfer chemical data extraction using span categorization and relation extraction models.
 
-To initialize the assets required by the CLI, run the following command: 
+To initialize the assets required by the CLI, run the following command.
 
 $ chemrel init
 """
