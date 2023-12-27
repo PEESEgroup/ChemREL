@@ -1,6 +1,7 @@
 import spacy
 from spacy import displacy
 from spacy.tokens import DocBin, Doc
+from spacy.util import filter_spans
 from chemrel.functions.pipeline import custom_relation_extractor, relation_scorer
 from chemrel.functions.model import build_relation_model, build_classification_layer, build_instances, build_tensors
 from collections import defaultdict
@@ -44,7 +45,7 @@ def predict_rel(sc_model, rel_model, text):
     """
     nlp = spacy.load(sc_model)
     doc = nlp(text)
-    doc.ents = doc.spans['sc']
+    doc.ents = filter_spans(doc.spans['sc'])
     nlp2 = spacy.load(rel_model)
     rel_results = dict()
     for name, proc in nlp2.pipeline:
