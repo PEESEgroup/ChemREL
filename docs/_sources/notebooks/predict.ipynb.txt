@@ -1,0 +1,191 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Prediction Functions Demo\n",
+    "This Jupyter notebook demonstrates the usage of the prediction functions that are part of ChemREL."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    ":::{tip}\n",
+    "To run a copy of this notebook yourself, download the corresponding `.ipynb` file [here](https://github.com/PEESEgroup/ChemREL/blob/main/docs_src/notebooks/predict.ipynb).\n",
+    ":::"
+   ],
+   "metadata": {
+    "collapsed": false
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Import ChemREL\n",
+    "To begin, import the `predict` submodule from the `functions` package in ChemREL, as follows."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-06-13T23:04:48.580988Z",
+     "start_time": "2023-06-13T23:04:48.569354Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "from chemrel.functions import predict"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Predict Submodule\n",
+    "The `predict` submodule contains two available functions, `predict_span()` and `predict_rel()`. Their usage is demonstrated below. For the full documentation of each function, see the [ChemREL Functions Reference](https://hl3c.github.io/ChemREL)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We first define the text string to predict as a variable, `example_text`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-06-13T23:10:08.762188Z",
+     "start_time": "2023-06-13T23:10:08.758897Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "example_text = '''Two physical properties of the fluorinated carboxylic acid,\n",
+    "2H-hexadecafluoro-2-decenoic acid (C10F16H2O2), were investigated in this study: \n",
+    "melting point and solubility. Melting point data were ascertained on a traditional melting point\n",
+    "apparatus and a differential scanning calorimeter (DSC), while solubility data were obtained using an LC−MS/MS system.\n",
+    "A melting point of 105 ± 1 °C and an aqueous solubility of 64 ± 5 ng/μL at ambient temperatures were observed'''"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Span Categorization\n",
+    "We demonstrate how `predict_span()` can be used to predict spans, as follows. This assumes that the span categorization model provided by ChemREL has been initialized at `chemrelmodels/sc/tok2vec`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-06-13T23:10:10.048757Z",
+     "start_time": "2023-06-13T23:10:09.853810Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "spans_dict = predict.predict_span(\"chemrelmodels/sc/tok2vec\", example_text)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can now print the contents of `spans_dict` to view the predicted spans."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'CHEMICAL': [('C10F16H2O2', 0.9998276), ('fluorinated carboxylic acid', 0.99959916), ('2H-hexadecafluoro-2-decenoic acid', 0.9974232)], 'MP': [('105 ± 1 °C', 0.99998033)]}\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(spans_dict)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Relation Prediction\n",
+    "We demonstrate how `predict_rel()` can be used to predict relations, as follows. This assumes that the span categorization and relation extraction models provided by ChemREL have been initialized at `chemrelmodels/sc/tok2vec` and `chemrelmodels/rel/tok2vec`, respectively."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2023-06-13T23:10:11.372988Z",
+     "start_time": "2023-06-13T23:10:11.368041Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "rels_dict = predict.predict_rel(\"chemrelmodels/sc/tok2vec\", \"chemrelmodels/rel/tok2vec\", example_text)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can now print the contents of `rels_dict` to view the predicted relations."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{('CHEMICAL', 'MP'): [(('fluorinated carboxylic acid', '105 ± 1 °C'), 0.999992), (('2H-hexadecafluoro-2-decenoic acid', '105 ± 1 °C'), 0.9999999), (('C10F16H2O2', '105 ± 1 °C'), 0.9999999)]}\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(rels_dict)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}

@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="functions.auxiliary module" href="functions.auxiliary.html" /><link rel="prev" title="Functions Reference" href="functions_index.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="CLI Reference" href="cli.html" /><link rel="prev" title="Setup" href="setup.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
-        <title>functions package - ChemREL</title>
+        <title>Basic Usage - ChemREL</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -157,16 +157,16 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Basic Usage</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Basic Usage</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Reference</a></li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="functions_index.html">Functions Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Functions Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">functions package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of functions package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="functions_index.html">Functions Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Functions Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="functions.html">functions package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of functions package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="functions.auxiliary.html">functions.auxiliary module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="functions.predict.html">functions.predict module</a></li>
 </ul>
@@ -211,29 +211,59 @@
           </label>
         </div>
         <article role="main">
-          <section id="functions-package">
-<h1>functions package<a class="headerlink" href="#functions-package" title="Link to this heading">#</a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="functions.auxiliary.html">functions.auxiliary module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.auxiliary.html#functions.auxiliary.Paper"><code class="docutils literal notranslate"><span class="pre">Paper</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="functions.auxiliary.html#functions.auxiliary.Paper.build_text"><code class="docutils literal notranslate"><span class="pre">Paper.build_text()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions.auxiliary.html#functions.auxiliary.Paper.write_to_jsonl"><code class="docutils literal notranslate"><span class="pre">Paper.write_to_jsonl()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="functions.auxiliary.html#functions.auxiliary.extract_paper"><code class="docutils literal notranslate"><span class="pre">extract_paper()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.auxiliary.html#functions.auxiliary.find_doi"><code class="docutils literal notranslate"><span class="pre">find_doi()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.auxiliary.html#functions.auxiliary.get_elsevier_paper"><code class="docutils literal notranslate"><span class="pre">get_elsevier_paper()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="functions.predict.html">functions.predict module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.predict.html#functions.predict.predict_rel"><code class="docutils literal notranslate"><span class="pre">predict_rel()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.predict.html#functions.predict.predict_span"><code class="docutils literal notranslate"><span class="pre">predict_span()</span></code></a></li>
-</ul>
-</li>
-</ul>
+          <section id="basic-usage">
+<h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">#</a></h1>
+<section id="calling-the-cli">
+<h2>Calling the CLI<a class="headerlink" href="#calling-the-cli" title="Link to this heading">#</a></h2>
+<p>Before using any ChemREL CLI commands, first, <code class="docutils literal notranslate"><span class="pre">cd</span></code> into the directory in which you initialized ChemREL as
+follows, where <code class="docutils literal notranslate"><span class="pre">[PATH]</span></code> is the directory path in which you originally ran the <code class="docutils literal notranslate"><span class="pre">chemrel</span> <span class="pre">init</span></code> command.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span><span class="o">[</span>PATH<span class="o">]</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If you fail to <code class="docutils literal notranslate"><span class="pre">cd</span></code> into this directory before beginning to use ChemREL in any new terminal session, the necessary files will not be visible to the program.</p>
+</div>
+<p>To print the help text for any command or subcommand, simply enter the desired command followed by the <code class="docutils literal notranslate"><span class="pre">--help</span></code> flag.
+For example, the following will print the help text for the <code class="docutils literal notranslate"><span class="pre">chemrel</span> <span class="pre">predict</span></code> command.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>chemrel<span class="w"> </span>predict<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>View the <a class="reference internal" href="cli.html"><span class="doc std std-doc">ChemREL CLI Reference</span></a> for a full list of available CLI commands.</p>
+</section>
+<section id="importing-functions">
+<h2>Importing Functions<a class="headerlink" href="#importing-functions" title="Link to this heading">#</a></h2>
+<p>In addition to the CLI, the ChemREL PyPI package exposes a number of functions which can be imported from within your own
+code.
+You must first import the specific submodule containing your desired function from the <code class="docutils literal notranslate"><span class="pre">functions</span></code> package. For example,
+to import the <code class="docutils literal notranslate"><span class="pre">auxiliary</span></code> submodule, run the following line.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemrel.functions</span> <span class="kn">import</span> <span class="n">auxiliary</span>
+</pre></div>
+</div>
+<p>You can then reference any available functions within the <code class="docutils literal notranslate"><span class="pre">auxiliary</span></code> submodule. For example, to call the
+<code class="docutils literal notranslate"><span class="pre">extract_paper()</span></code> function, you can run the following.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paper</span> <span class="o">=</span> <span class="n">auxiliary</span><span class="o">.</span><span class="n">extract_paper</span><span class="p">(</span><span class="s2">&quot;/example/paper/path&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>View the <a class="reference internal" href="functions_index.html"><span class="doc std std-doc">ChemREL Functions Reference</span></a> for a full list of importable functions.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">#</a></h2>
+<p>Any alterations to the models, datasets, or functions included with ChemREL must be properly attributed according to the following citation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">doi</span><span class="p">,</span>
+  <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Alshehri</span><span class="p">,</span> <span class="n">Abdulelah</span> <span class="n">S</span><span class="o">.</span> <span class="ow">and</span> <span class="n">Horstmann</span><span class="p">,</span> <span class="n">Kai</span> <span class="n">A</span><span class="o">.</span> <span class="ow">and</span> <span class="n">You</span><span class="p">,</span> <span class="n">Fengqi</span><span class="p">},</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">A</span> <span class="n">Versatile</span> <span class="n">Deep</span> <span class="n">Learning</span> <span class="n">Pipeline</span> <span class="k">for</span> <span class="n">Transferable</span> <span class="n">Chemical</span> <span class="n">Data</span> <span class="n">Extraction</span><span class="p">},</span>
+  <span class="n">journal</span> <span class="o">=</span> <span class="p">{</span><span class="n">Submitted</span> <span class="n">to</span> <span class="n">Journal</span> <span class="n">of</span> <span class="n">Chemical</span> <span class="n">Information</span> <span class="ow">and</span> <span class="n">Modeling</span><span class="p">},</span>
+  <span class="n">volume</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="o">/</span><span class="n">a</span><span class="p">},</span>
+  <span class="n">number</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="o">/</span><span class="n">a</span><span class="p">},</span>
+  <span class="n">pages</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="o">/</span><span class="n">a</span><span class="p">},</span>
+  <span class="n">keywords</span> <span class="o">=</span> <span class="p">{},</span>
+  <span class="n">doi</span> <span class="o">=</span> <span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">doi</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="p">},</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="p">{},</span>
+  <span class="n">eprint</span> <span class="o">=</span> <span class="p">{},</span>
+  <span class="n">abstract</span> <span class="o">=</span> <span class="p">{</span><span class="n">Abstract</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 </section>
 </section>
@@ -243,23 +273,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="functions.auxiliary.html">
+          <a class="next-page" href="cli.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">functions.auxiliary module</div>
+                <div class="title">CLI Reference</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="functions_index.html">
+          <a class="prev-page" href="setup.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Functions Reference</div>
+                <div class="title">Setup</div>
                 
               </div>
             </a>
@@ -293,8 +323,10 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">functions package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#">Basic Usage</a><ul>
+<li><a class="reference internal" href="#calling-the-cli">Calling the CLI</a></li>
+<li><a class="reference internal" href="#importing-functions">Importing Functions</a></li>
+<li><a class="reference internal" href="#citation">Citation</a></li>
 </ul>
 </li>
 </ul>

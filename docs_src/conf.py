@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../chemrel/src/chemrel'))
 # -- Project information -----------------------------------------------------
 
 project = 'ChemREL'
-copyright = '2023, PEESE.'
+copyright = '2024, PEESE.'
 author = 'PEESE'
 
 # The full version, including alpha/beta/rc tags
@@ -35,6 +35,8 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.intersphinx",
     "sphinx.ext.githubpages",
+    "myst_nb",
+    "sphinx_copybutton"
 ]
 
 intersphinx_mapping = {
@@ -53,7 +55,15 @@ exclude_patterns = []
 
 # -- Options for HTML output -------------------------------------------------
 
+myst_heading_anchors = 2
+nb_execution_mode = "off"
+
+myst_enable_extensions = [
+    "colon_fence"
+]
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
 html_theme = "furo"
+html_title = "ChemREL"

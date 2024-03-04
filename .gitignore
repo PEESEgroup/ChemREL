@@ -5,3 +5,4 @@ dist
 __pycache__/
 *.py[cod]
 .idea/*
+jupyter_execute/
