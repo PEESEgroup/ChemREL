@@ -177,7 +177,7 @@
 <p class="caption" role="heading"><span class="caption-text">Example Notebooks</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="predict_demo.html">Prediction Functions Demo</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Span Categorization Demo: Glass Transition Temperature</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Span Categorization Demo</a></li>
 </ul>
 
 </div>
@@ -214,21 +214,21 @@
         <article role="main">
           <section id="span-categorization-demo-glass-transition-temperature">
 <h1>Span Categorization Demo: Glass Transition Temperature<a class="headerlink" href="#span-categorization-demo-glass-transition-temperature" title="Link to this heading">#</a></h1>
-<p>In this notebook, we provide an example of training ChemREL to identify and extract a new chemical property, the glass transition temperature ($T_g$) on polymer compounds.</p>
+<p>In this notebook, we demonstrate an example of training ChemREL to identify and extract a new chemical property, the glass transition temperature $(T_g)$, on polymer compounds.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>To run a copy of this notebook yourself, download the corresponding <code class="docutils literal notranslate"><span class="pre">spancat_demo.ipynb</span></code> file <a class="reference external" href="https://github.com/PEESEgroup/ChemREL/blob/main/docs_src/notebooks/spancat_demo.ipynb">here</a>.</p>
 </div>
 <section id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
-<p>In this demo, we will train a new span categorization model to label polymers and glass transition temperature values in text extracted from research literature.</p>
+<p>In this demo, we will train a new Tok2Vec span categorization model to label polymers and glass transition temperature values in text extracted from research literature.</p>
 <p>Before beginning the demo, ensure that ChemREL is properly installed and that your command line is focused to the ChemREL Initial Directory you configured when first installing the package.</p>
 </section>
 <section id="data-preparation">
 <h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
-<p>Before labeling any data, we will first need to source the data from research texts first. In this demo, we will extract sample data from papers hosted on Elsevier. Alternatively, you may supply your own data in PDF form and run the <code class="docutils literal notranslate"><span class="pre">extract-paper</span></code> instead. This demo will use the following text as an example data source.</p>
+<p>Before labeling any data, we will first need to source the data from research texts. To this end, we will extract sample data from a paper hosted on Elsevier. Alternatively, you may supply your own data in PDF form and run the <code class="docutils literal notranslate"><span class="pre">chemrel</span> <span class="pre">aux</span> <span class="pre">extract-paper</span></code> command instead. This demo will use the following text as an example data source.</p>
 <ul class="simple">
-<li><p>https://doi.org/10.1016/j.nocx.2022.100084</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.nocx.2022.100084">https://doi.org/10.1016/j.nocx.2022.100084</a></p></li>
 </ul>
 <p>To download hosted papers from Elsevier using ChemREL, you will need an Elsevier API key. If you do not have one already, request a key at the <a class="reference external" href="https://dev.elsevier.com/">Elsevier Developer Portal</a>.</p>
 <p>Once you have obtained a key, replace <code class="docutils literal notranslate"><span class="pre">[API</span> <span class="pre">Key]</span></code> with your personal key, and run the following command to generate a JSONL data file from the chosen paper.</p>
@@ -242,7 +242,7 @@
 </section>
 <section id="labeling-with-prodigy">
 <h2>Labeling with Prodigy<a class="headerlink" href="#labeling-with-prodigy" title="Link to this heading">#</a></h2>
-<p>Now that we have our JSONL file <code class="docutils literal notranslate"><span class="pre">tg_data.jsonl</span></code> containing all the data from our literature, it’s time to label the property/value spans in our data. For labelling, we recommend using <a class="reference external" href="https://prodi.gy/">Prodigy</a>, an easy-to-use data annotation tool. While using Prodigy is not required, note that ChemREL expects all training data to conform to <a class="reference external" href="https://spacy.io/api/data-formats#training">Spacy’s binary data formats</a>. If using another annotation strategy, be sure that all data fed into ChemREL is in this format.</p>
+<p>Now that we have generated our JSONL file <code class="docutils literal notranslate"><span class="pre">tg_data.jsonl</span></code> containing the necessary data from our paper, it’s time to label the property/value spans found in the text. For labelling spans, we recommend using <a class="reference external" href="https://prodi.gy/">Prodigy</a>, an easy-to-use data annotation tool. While using Prodigy is not required, note that ChemREL expects all training data to conform to <a class="reference external" href="https://spacy.io/api/data-formats#training">Spacy’s binary data formats</a>. If using another annotation strategy, be sure that all data fed into ChemREL is in this format.</p>
 <section id="prodigy-installation">
 <h3>Prodigy Installation<a class="headerlink" href="#prodigy-installation" title="Link to this heading">#</a></h3>
 <p>After obtaining a Prodigy license, you can install the Prodigy PyPI package <a class="reference external" href="https://prodi.gy/docs/install">here</a>. It’s recommended that you do so in a virtual environment for ease of management.</p>
@@ -252,7 +252,7 @@
 <section id="annotating-spans">
 <h2>Annotating Spans<a class="headerlink" href="#annotating-spans" title="Link to this heading">#</a></h2>
 <p>We will now annotate polymer compound names and their corresponding glass transition temperatures in the extracted <code class="docutils literal notranslate"><span class="pre">tg_data.jsonl</span></code> file. We will assign polymer compound names and transition temperature values the labels <code class="docutils literal notranslate"><span class="pre">POLYMER</span></code> and <code class="docutils literal notranslate"><span class="pre">TG</span></code>, respectively, and save the annotations to a new Prodigy dataset <code class="docutils literal notranslate"><span class="pre">tg</span></code>. To do so, run the following command.</p>
-<p>Note: The command can be further customized as appropriate according to the Prodigy <a class="reference external" href="https://prodi.gy/docs/span-categorization">spans recipe documentation</a>.</p>
+<p>Note: The command can be further customized as appropriate according to the Prodigy <a class="reference external" href="https://prodi.gy/docs/recipes#spans">spans recipe documentation</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>-m<span class="w"> </span>prodigy<span class="w"> </span>spans.manual<span class="w"> </span>tg<span class="w"> </span>blank:en<span class="w"> </span>assets/tg_data.jsonl<span class="w"> </span>--label<span class="w"> </span>POLYMER,TG
@@ -275,9 +275,10 @@ Session ID: 2024-04-15_08-36-39
 </div>
 </div>
 </div>
-<p>Now, open the web server URL outputted above, and begin highlighting the polymer and glass transition temperature spans according to their corresponding labels. Once all data samples have been labeled, save the annotations with key command <code class="docutils literal notranslate"><span class="pre">Ctrl-S</span></code> or <code class="docutils literal notranslate"><span class="pre">Cmd-S</span></code> as appropriate, and interrupt the kernel to end the annotation session.</p>
-<p>Next, to generate a Spacy binary data file, we will run Prodigy’s <code class="docutils literal notranslate"><span class="pre">data-to-spacy</span></code> command as follows to generate training and development dataset files, or <code class="docutils literal notranslate"><span class="pre">train.spacy</span></code> and <code class="docutils literal notranslate"><span class="pre">dev.spacy</span></code>, respectively and save them to ChemREL’s <code class="docutils literal notranslate"><span class="pre">scdata</span></code> directory. For this example, we have opted to use the <code class="docutils literal notranslate"><span class="pre">tok2vec</span></code> model and have thus selected the available <code class="docutils literal notranslate"><span class="pre">sc_tok2vec.cfg</span></code> config file.</p>
-<p>Note: To define a custom evaluation split, or add other constraints, see the <a class="reference external" href="https://prodi.gy/docs/recipes#data-to-spacy"><code class="docutils literal notranslate"><span class="pre">data-to-spacy</span></code> command reference</a>.</p>
+<p>Now, open the web server URL outputted above, and begin highlighting the polymer and glass transition temperature spans according to their corresponding labels. Once all data samples have been labeled, save the annotations with the key command <code class="docutils literal notranslate"><span class="pre">Ctrl-S</span></code> or <code class="docutils literal notranslate"><span class="pre">Cmd-S</span></code> as appropriate, and interrupt the kernel to end the annotation session.</p>
+<p>For a more detailed reference on the Prodigy annotation process, see the Prodigy span categorization documentation <a class="reference external" href="https://prodi.gy/docs/span-categorization">here</a>.</p>
+<p>Next, to generate a Spacy binary data file, we will run Prodigy’s <code class="docutils literal notranslate"><span class="pre">data-to-spacy</span></code> command to generate training and development dataset files, or <code class="docutils literal notranslate"><span class="pre">train.spacy</span></code> and <code class="docutils literal notranslate"><span class="pre">dev.spacy</span></code>, respectively, and save them to ChemREL’s <code class="docutils literal notranslate"><span class="pre">scdata</span></code> directory. For this example, we have opted to use the <code class="docutils literal notranslate"><span class="pre">tok2vec</span></code> model and have thus selected the available <code class="docutils literal notranslate"><span class="pre">sc_tok2vec.cfg</span></code> config file.</p>
+<p>Note: To define a custom evaluation split or add other constraints, see the <a class="reference external" href="https://prodi.gy/docs/recipes#data-to-spacy"><code class="docutils literal notranslate"><span class="pre">data-to-spacy</span></code> command reference</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>-m<span class="w"> </span>prodigy<span class="w"> </span>data-to-spacy<span class="w"> </span>./scdata<span class="w"> </span>--spancat<span class="w"> </span>tg<span class="w"> </span>--config<span class="w"> </span>./configs/sc_tok2vec.cfg
@@ -363,7 +364,7 @@ Aborted!
 </div>
 </div>
 </div>
-<p>After training is complete, the best and last trained model will be saved in the <code class="docutils literal notranslate"><span class="pre">model-best</span></code> and <code class="docutils literal notranslate"><span class="pre">model-last</span></code> folders, respectively, within <code class="docutils literal notranslate"><span class="pre">sctraining</span></code>.</p>
+<p>After training is complete, the best and last trained model will be saved in the <code class="docutils literal notranslate"><span class="pre">model-best</span></code> and <code class="docutils literal notranslate"><span class="pre">model-last</span></code> folders, respectively, within the <code class="docutils literal notranslate"><span class="pre">sctraining</span></code> directory.</p>
 </section>
 <section id="generating-predictions">
 <h2>Generating Predictions<a class="headerlink" href="#generating-predictions" title="Link to this heading">#</a></h2>

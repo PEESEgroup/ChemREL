@@ -30,5 +30,5 @@ functions_index
 :caption: Example Notebooks
 
 notebooks/predict_demo
-notebooks/spancat_demo
+Span Categorization Demo <notebooks/spancat_demo>
 ```

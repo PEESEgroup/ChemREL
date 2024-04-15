@@ -11,7 +11,7 @@
    "source": [
     "# Span Categorization Demo: Glass Transition Temperature\n",
     "\n",
-    "In this notebook, we provide an example of training ChemREL to identify and extract a new chemical property, the glass transition temperature ($T_g$) on polymer compounds."
+    "In this notebook, we demonstrate an example of training ChemREL to identify and extract a new chemical property, the glass transition temperature $(T_g)$, on polymer compounds."
    ]
   },
   {
@@ -31,7 +31,7 @@
    "source": [
     "## Setup\n",
     "\n",
-    "In this demo, we will train a new span categorization model to label polymers and glass transition temperature values in text extracted from research literature.\n",
+    "In this demo, we will train a new Tok2Vec span categorization model to label polymers and glass transition temperature values in text extracted from research literature.\n",
     "\n",
     "Before beginning the demo, ensure that ChemREL is properly installed and that your command line is focused to the ChemREL Initial Directory you configured when first installing the package.\n"
    ]
@@ -43,9 +43,9 @@
    "source": [
     "## Data Preparation\n",
     "\n",
-    "Before labeling any data, we will first need to source the data from research texts first. In this demo, we will extract sample data from papers hosted on Elsevier. Alternatively, you may supply your own data in PDF form and run the `extract-paper` instead. This demo will use the following text as an example data source.\n",
+    "Before labeling any data, we will first need to source the data from research texts. To this end, we will extract sample data from a paper hosted on Elsevier. Alternatively, you may supply your own data in PDF form and run the `chemrel aux extract-paper` command instead. This demo will use the following text as an example data source.\n",
     "\n",
-    "+ https://doi.org/10.1016/j.nocx.2022.100084\n",
+    "+ [https://doi.org/10.1016/j.nocx.2022.100084](https://doi.org/10.1016/j.nocx.2022.100084)\n",
     "\n",
     "To download hosted papers from Elsevier using ChemREL, you will need an Elsevier API key. If you do not have one already, request a key at the [Elsevier Developer Portal](https://dev.elsevier.com/).\n",
     "\n",
@@ -67,7 +67,7 @@
    "source": [
     "## Labeling with Prodigy\n",
     "\n",
-    "Now that we have our JSONL file `tg_data.jsonl` containing all the data from our literature, it's time to label the property/value spans in our data. For labelling, we recommend using [Prodigy](https://prodi.gy/), an easy-to-use data annotation tool. While using Prodigy is not required, note that ChemREL expects all training data to conform to [Spacy's binary data formats](https://spacy.io/api/data-formats#training). If using another annotation strategy, be sure that all data fed into ChemREL is in this format."
+    "Now that we have generated our JSONL file `tg_data.jsonl` containing the necessary data from our paper, it's time to label the property/value spans found in the text. For labelling spans, we recommend using [Prodigy](https://prodi.gy/), an easy-to-use data annotation tool. While using Prodigy is not required, note that ChemREL expects all training data to conform to [Spacy's binary data formats](https://spacy.io/api/data-formats#training). If using another annotation strategy, be sure that all data fed into ChemREL is in this format."
    ]
   },
   {
@@ -91,7 +91,7 @@
     "\n",
     "We will now annotate polymer compound names and their corresponding glass transition temperatures in the extracted `tg_data.jsonl` file. We will assign polymer compound names and transition temperature values the labels `POLYMER` and `TG`, respectively, and save the annotations to a new Prodigy dataset `tg`. To do so, run the following command.\n",
     "\n",
-    "Note: The command can be further customized as appropriate according to the Prodigy [spans recipe documentation](https://prodi.gy/docs/span-categorization)."
+    "Note: The command can be further customized as appropriate according to the Prodigy [spans recipe documentation](https://prodi.gy/docs/recipes#spans)."
    ]
   },
   {
@@ -128,11 +128,13 @@
    "id": "ffe01b886bd40dc1",
    "metadata": {},
    "source": [
-    "Now, open the web server URL outputted above, and begin highlighting the polymer and glass transition temperature spans according to their corresponding labels. Once all data samples have been labeled, save the annotations with key command `Ctrl-S` or `Cmd-S` as appropriate, and interrupt the kernel to end the annotation session.\n",
+    "Now, open the web server URL outputted above, and begin highlighting the polymer and glass transition temperature spans according to their corresponding labels. Once all data samples have been labeled, save the annotations with the key command `Ctrl-S` or `Cmd-S` as appropriate, and interrupt the kernel to end the annotation session.\n",
     "\n",
-    "Next, to generate a Spacy binary data file, we will run Prodigy's `data-to-spacy` command as follows to generate training and development dataset files, or `train.spacy` and `dev.spacy`, respectively and save them to ChemREL's `scdata` directory. For this example, we have opted to use the `tok2vec` model and have thus selected the available `sc_tok2vec.cfg` config file.\n",
+    "For a more detailed reference on the Prodigy annotation process, see the Prodigy span categorization documentation [here](https://prodi.gy/docs/span-categorization).\n",
     "\n",
-    "Note: To define a custom evaluation split, or add other constraints, see the [`data-to-spacy` command reference](https://prodi.gy/docs/recipes#data-to-spacy)."
+    "Next, to generate a Spacy binary data file, we will run Prodigy's `data-to-spacy` command to generate training and development dataset files, or `train.spacy` and `dev.spacy`, respectively, and save them to ChemREL's `scdata` directory. For this example, we have opted to use the `tok2vec` model and have thus selected the available `sc_tok2vec.cfg` config file.\n",
+    "\n",
+    "Note: To define a custom evaluation split or add other constraints, see the [`data-to-spacy` command reference](https://prodi.gy/docs/recipes#data-to-spacy)."
    ]
   },
   {
@@ -243,9 +245,7 @@
    "cell_type": "markdown",
    "id": "c98e2cfdc3722122",
    "metadata": {},
-   "source": [
-    "After training is complete, the best and last trained model will be saved in the `model-best` and `model-last` folders, respectively, within `sctraining`."
-   ]
+   "source": "After training is complete, the best and last trained model will be saved in the `model-best` and `model-last` folders, respectively, within the `sctraining` directory."
   },
   {
    "cell_type": "markdown",

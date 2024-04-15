@@ -3,7 +3,7 @@
 ## Calling the CLI
 
 Before using any ChemREL CLI commands, first, `cd` into the directory in which you initialized ChemREL as
-follows, where `[PATH]` is the directory path in which you originally ran the `chemrel init` command.
+follows, where `[PATH]` is the ChemREL Initial Direcory path in which you originally ran the `chemrel init` command.
 ```console
 $ cd [PATH]
 ```
@@ -17,7 +17,15 @@ For example, the following will print the help text for the `chemrel predict` co
 $ chemrel predict --help
 ```
 
-View the [ChemREL CLI Reference](cli) for a full list of available CLI commands.
+### Training New Models
+
+ChemREL span categorization, relation extraction, and associated transfer learning models can be trained through the
+ChemREL CLI.
+
+For a demonstration on training a span categorization model for a new chemical property, see the
+[Span Categorization Demo notebook](notebooks/spancat_demo.ipynb).
+
+For a full list of available CLI commands, view the [ChemREL CLI Reference](cli).
 
 ## Importing Functions
 
@@ -34,8 +42,10 @@ You can then reference any available functions within the `auxiliary` submodule.
 ```python
 paper = auxiliary.extract_paper("/example/paper/path")
 ```
+For a demonstration on importing methods in a Jupyter notebook, see the
+[Prediction Functions Demo notebook](notebooks/predict_demo.ipynb).
 
-View the [ChemREL Functions Reference](functions_index) for a full list of importable functions.
+For a full list of importable functions, view the [ChemREL Functions Reference](functions_index).
 
 ```{include} ../README.md
 :start-after: <!-- begin citation -->
