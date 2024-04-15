@@ -51,12 +51,13 @@ $ chemrel --help
 Before running any model-related commands, ChemREL must be initialized by downloading all necessary model and config
 files required by the package. To download the files to your desired directory, first enter the directory where you wish
 to save the files by running the `cd` command in the command line as follows, where `[PATH]` should be replaced
-with the directory path of your desired location.
+with the directory path of your desired location. Hereinafter, this directory will be referred to as the ChemREL Initial
+Directory.
 ```console
 $ cd [PATH]
 ```
 ```{note}
-Note that you will need to `cd` into this directory before using ChemREL in the future.
+Note that you will need to `cd` into the ChemREL Initial Directory before using ChemREL in the future.
 ```
 
 You can then run the `pwd` command to print the path you have entered to verify that you are in the correct directory.
@@ -68,14 +69,15 @@ $ chemrel init
 ```
 ```{tip}
 You can also install the files to a path relative to the currently focused directory by passing an additional
-argument into the command, e.g. `chemrel init [ALTERNATE PATH]`.
+argument into the command, e.g. `chemrel init [ALTERNATE PATH]`. Here, `[ALTERNATE PATH]` will serve as the Initial
+Directory.
 ```
 ```{admonition} Note for Windows installations
 :class: note
 If the `chemrel init` command hangs while downloading required files, you can
 alternatively clone the contents of the
 [`chemrelmodels` Hugging Face repository](https://huggingface.co/AbdulelahAlshehri/chemrelmodels/tree/main) to the same 
-directory.
+Initial Directory.
 ```
 
 Once the initialization is complete, you are ready to begin using ChemREL.

@@ -24,7 +24,8 @@ The reference material on the documentation website can be additionally found as
 + [ChemREL CLI Reference](chemrel/README.md) - Complete documentation of all available CLI commands.
 + [ChemREL Functions Reference](https://peesegroup.github.io/ChemREL/functions_index.html) - Complete documentation of ChemREL Python functions which
 are intended to be importable in your own code.
-+ [Prediction Functions Demo Notebook](docs_src/notebooks/predict.ipynb) - Jupyter notebook demonstrating usage of importable prediction functions.
++ [Prediction Functions Demo Notebook](docs_src/notebooks/predict_demo.ipynb) - Jupyter notebook demonstrating usage of importable prediction functions.
++ [Span Categorization Demo Notebook](docs_src/notebooks/spancat_demo.ipynb) - Jupyter notebook demonstrating the training of a new span categorization model.
 
 <!-- begin citation -->
 

@@ -12,7 +12,7 @@
    "cell_type": "markdown",
    "source": [
     ":::{tip}\n",
-    "To run a copy of this notebook yourself, download the corresponding `.ipynb` file [here](https://github.com/PEESEgroup/ChemREL/blob/main/docs_src/notebooks/predict.ipynb).\n",
+    "To run a copy of this notebook yourself, download the corresponding `predict_demo.ipynb` file [here](https://github.com/PEESEgroup/ChemREL/blob/main/docs_src/notebooks/predict_demo.ipynb).\n",
     ":::"
    ],
    "metadata": {

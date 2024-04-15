@@ -176,7 +176,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Example Notebooks</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/predict.html">Prediction Functions Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/predict_demo.html">Prediction Functions Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/spancat_demo.html">Span Categorization Demo: Glass Transition Temperature</a></li>
 </ul>
 
 </div>
@@ -260,13 +261,14 @@ installations have been completed, proceed to the next step.</p>
 <p>Before running any model-related commands, ChemREL must be initialized by downloading all necessary model and config
 files required by the package. To download the files to your desired directory, first enter the directory where you wish
 to save the files by running the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command in the command line as follows, where <code class="docutils literal notranslate"><span class="pre">[PATH]</span></code> should be replaced
-with the directory path of your desired location.</p>
+with the directory path of your desired location. Hereinafter, this directory will be referred to as the ChemREL Initial
+Directory.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span><span class="o">[</span>PATH<span class="o">]</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Note that you will need to <code class="docutils literal notranslate"><span class="pre">cd</span></code> into this directory before using ChemREL in the future.</p>
+<p>Note that you will need to <code class="docutils literal notranslate"><span class="pre">cd</span></code> into the ChemREL Initial Directory before using ChemREL in the future.</p>
 </div>
 <p>You can then run the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> command to print the path you have entered to verify that you are in the correct directory.</p>
 <p>Next, run the following command to download the required files. The files will be downloaded in the folder path you
@@ -277,14 +279,15 @@ previously entered. This may take a while to complete.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can also install the files to a path relative to the currently focused directory by passing an additional
-argument into the command, e.g. <code class="docutils literal notranslate"><span class="pre">chemrel</span> <span class="pre">init</span> <span class="pre">[ALTERNATE</span> <span class="pre">PATH]</span></code>.</p>
+argument into the command, e.g. <code class="docutils literal notranslate"><span class="pre">chemrel</span> <span class="pre">init</span> <span class="pre">[ALTERNATE</span> <span class="pre">PATH]</span></code>. Here, <code class="docutils literal notranslate"><span class="pre">[ALTERNATE</span> <span class="pre">PATH]</span></code> will serve as the Initial
+Directory.</p>
 </div>
 <div class="note admonition">
 <p class="admonition-title">Note for Windows installations</p>
 <p>If the <code class="docutils literal notranslate"><span class="pre">chemrel</span> <span class="pre">init</span></code> command hangs while downloading required files, you can
 alternatively clone the contents of the
 <a class="reference external" href="https://huggingface.co/AbdulelahAlshehri/chemrelmodels/tree/main"><code class="docutils literal notranslate"><span class="pre">chemrelmodels</span></code> Hugging Face repository</a> to the same
-directory.</p>
+Initial Directory.</p>
 </div>
 <p>Once the initialization is complete, you are ready to begin using ChemREL.</p>
 </section>

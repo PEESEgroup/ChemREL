@@ -1,0 +1,482 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="Prediction Functions Demo" href="predict_demo.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+        <title>Span Categorization Demo: Glass Transition Temperature - ChemREL</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">ChemREL</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">ChemREL</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Basic Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">CLI Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions_index.html">Functions Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Functions Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../functions.html">functions package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of functions package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../functions.auxiliary.html">functions.auxiliary module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions.predict.html">functions.predict module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example Notebooks</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="predict_demo.html">Prediction Functions Demo</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Span Categorization Demo: Glass Transition Temperature</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="span-categorization-demo-glass-transition-temperature">
+<h1>Span Categorization Demo: Glass Transition Temperature<a class="headerlink" href="#span-categorization-demo-glass-transition-temperature" title="Link to this heading">#</a></h1>
+<p>In this notebook, we provide an example of training ChemREL to identify and extract a new chemical property, the glass transition temperature ($T_g$) on polymer compounds.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To run a copy of this notebook yourself, download the corresponding <code class="docutils literal notranslate"><span class="pre">spancat_demo.ipynb</span></code> file <a class="reference external" href="https://github.com/PEESEgroup/ChemREL/blob/main/docs_src/notebooks/spancat_demo.ipynb">here</a>.</p>
+</div>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<p>In this demo, we will train a new span categorization model to label polymers and glass transition temperature values in text extracted from research literature.</p>
+<p>Before beginning the demo, ensure that ChemREL is properly installed and that your command line is focused to the ChemREL Initial Directory you configured when first installing the package.</p>
+</section>
+<section id="data-preparation">
+<h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
+<p>Before labeling any data, we will first need to source the data from research texts first. In this demo, we will extract sample data from papers hosted on Elsevier. Alternatively, you may supply your own data in PDF form and run the <code class="docutils literal notranslate"><span class="pre">extract-paper</span></code> instead. This demo will use the following text as an example data source.</p>
+<ul class="simple">
+<li><p>https://doi.org/10.1016/j.nocx.2022.100084</p></li>
+</ul>
+<p>To download hosted papers from Elsevier using ChemREL, you will need an Elsevier API key. If you do not have one already, request a key at the <a class="reference external" href="https://dev.elsevier.com/">Elsevier Developer Portal</a>.</p>
+<p>Once you have obtained a key, replace <code class="docutils literal notranslate"><span class="pre">[API</span> <span class="pre">Key]</span></code> with your personal key, and run the following command to generate a JSONL data file from the chosen paper.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>chemrel<span class="w"> </span>aux<span class="w"> </span>extract-elsevier-paper<span class="w"> </span><span class="m">10</span>.1016/j.nocx.2022.100084<span class="w"> </span><span class="o">[</span>API<span class="w"> </span>Key<span class="o">]</span><span class="w"> </span>./assets/tg_data.jsonl
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="labeling-with-prodigy">
+<h2>Labeling with Prodigy<a class="headerlink" href="#labeling-with-prodigy" title="Link to this heading">#</a></h2>
+<p>Now that we have our JSONL file <code class="docutils literal notranslate"><span class="pre">tg_data.jsonl</span></code> containing all the data from our literature, it’s time to label the property/value spans in our data. For labelling, we recommend using <a class="reference external" href="https://prodi.gy/">Prodigy</a>, an easy-to-use data annotation tool. While using Prodigy is not required, note that ChemREL expects all training data to conform to <a class="reference external" href="https://spacy.io/api/data-formats#training">Spacy’s binary data formats</a>. If using another annotation strategy, be sure that all data fed into ChemREL is in this format.</p>
+<section id="prodigy-installation">
+<h3>Prodigy Installation<a class="headerlink" href="#prodigy-installation" title="Link to this heading">#</a></h3>
+<p>After obtaining a Prodigy license, you can install the Prodigy PyPI package <a class="reference external" href="https://prodi.gy/docs/install">here</a>. It’s recommended that you do so in a virtual environment for ease of management.</p>
+<p>Once you have installed Prodigy or another data annotation tool, proceed below. From this point forward, we will assume that the virtual environment in which Prodigy is installed is active, and that the <code class="docutils literal notranslate"><span class="pre">prodigy</span></code> command is usable in the command line.</p>
+</section>
+</section>
+<section id="annotating-spans">
+<h2>Annotating Spans<a class="headerlink" href="#annotating-spans" title="Link to this heading">#</a></h2>
+<p>We will now annotate polymer compound names and their corresponding glass transition temperatures in the extracted <code class="docutils literal notranslate"><span class="pre">tg_data.jsonl</span></code> file. We will assign polymer compound names and transition temperature values the labels <code class="docutils literal notranslate"><span class="pre">POLYMER</span></code> and <code class="docutils literal notranslate"><span class="pre">TG</span></code>, respectively, and save the annotations to a new Prodigy dataset <code class="docutils literal notranslate"><span class="pre">tg</span></code>. To do so, run the following command.</p>
+<p>Note: The command can be further customized as appropriate according to the Prodigy <a class="reference external" href="https://prodi.gy/docs/span-categorization">spans recipe documentation</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>-m<span class="w"> </span>prodigy<span class="w"> </span>spans.manual<span class="w"> </span>tg<span class="w"> </span>blank:en<span class="w"> </span>assets/tg_data.jsonl<span class="w"> </span>--label<span class="w"> </span>POLYMER,TG
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 2 label(s): POLYMER, TG
+Added dataset tg to database SQLite.
+
+✨  Starting the web server at http://localhost:8080 ...
+Open the app in your browser and start annotating!
+
+^C
+
+<span class=" -Color -Color-C2">✔ Saved 185 annotations to database SQLite</span>
+Dataset: tg
+Session ID: 2024-04-15_08-36-39
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, open the web server URL outputted above, and begin highlighting the polymer and glass transition temperature spans according to their corresponding labels. Once all data samples have been labeled, save the annotations with key command <code class="docutils literal notranslate"><span class="pre">Ctrl-S</span></code> or <code class="docutils literal notranslate"><span class="pre">Cmd-S</span></code> as appropriate, and interrupt the kernel to end the annotation session.</p>
+<p>Next, to generate a Spacy binary data file, we will run Prodigy’s <code class="docutils literal notranslate"><span class="pre">data-to-spacy</span></code> command as follows to generate training and development dataset files, or <code class="docutils literal notranslate"><span class="pre">train.spacy</span></code> and <code class="docutils literal notranslate"><span class="pre">dev.spacy</span></code>, respectively and save them to ChemREL’s <code class="docutils literal notranslate"><span class="pre">scdata</span></code> directory. For this example, we have opted to use the <code class="docutils literal notranslate"><span class="pre">tok2vec</span></code> model and have thus selected the available <code class="docutils literal notranslate"><span class="pre">sc_tok2vec.cfg</span></code> config file.</p>
+<p>Note: To define a custom evaluation split, or add other constraints, see the <a class="reference external" href="https://prodi.gy/docs/recipes#data-to-spacy"><code class="docutils literal notranslate"><span class="pre">data-to-spacy</span></code> command reference</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>-m<span class="w"> </span>prodigy<span class="w"> </span>data-to-spacy<span class="w"> </span>./scdata<span class="w"> </span>--spancat<span class="w"> </span>tg<span class="w"> </span>--config<span class="w"> </span>./configs/sc_tok2vec.cfg
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-C4">ℹ Using language &#39;en&#39;</span>
+
+<span class=" -Color -Color-Bold">============================== Generating data ==============================</span>
+Components: spancat
+Merging training and evaluation data for 1 components
+  - [spancat] Training: 148 | Evaluation: 37 (20% split)
+Training: 80 | Evaluation: 22
+Labels: spancat (2)
+<span class=" -Color -Color-C2">✔ Saved 80 training examples</span>
+scdata/train.spacy
+<span class=" -Color -Color-C2">✔ Saved 22 evaluation examples</span>
+scdata/dev.spacy
+
+<span class=" -Color -Color-Bold">============================= Generating config =============================</span>
+<span class=" -Color -Color-C2">✔ Generated training config</span>
+
+<span class=" -Color -Color-Bold">======================== Generating cached label data ========================</span>
+<span class=" -Color -Color-C2">✔ Saving label data for component &#39;spancat&#39;</span>
+scdata/labels/spancat.json
+
+<span class=" -Color -Color-Bold">============================= Finalizing export =============================</span>
+<span class=" -Color -Color-C2">✔ Saved training config</span>
+scdata/config.cfg
+
+To use this data for training with spaCy, you can run:
+python -m spacy train scdata/config.cfg --paths.train scdata/train.spacy --paths.dev scdata/dev.spacy
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-a-new-model">
+<h2>Training a New Model<a class="headerlink" href="#training-a-new-model" title="Link to this heading">#</a></h2>
+<p>Now that we have generated our binary Spacy data files, it’s time to train a new ChemREL Tok2Vec span categorizer model from our annotations. To do so, we will run ChemREL’s <code class="docutils literal notranslate"><span class="pre">span</span> <span class="pre">train-cpu</span></code> command on the data files and config file we generated, as follows.</p>
+<p>Note: To end training prematurely, terminate the kernel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>chemrel<span class="w"> </span>span<span class="w"> </span>train-cpu<span class="w"> </span>--tok2vec-config<span class="w"> </span>./scdata/config.cfg
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-C4">ℹ Saving to output directory: sctraining</span>
+<span class=" -Color -Color-C4">ℹ Using CPU</span>
+
+<span class=" -Color -Color-Bold">=========================== Initializing pipeline ===========================</span>
+[2024-04-15 08:42:35,253] [INFO] Set up nlp object from config
+[2024-04-15 08:42:35,261] [INFO] Pipeline: [&#39;spancat&#39;]
+[2024-04-15 08:42:35,264] [INFO] Created vocabulary
+[2024-04-15 08:42:35,264] [INFO] Finished initializing nlp object
+[2024-04-15 08:42:35,362] [INFO] Initialized pipeline components: [&#39;spancat&#39;]
+<span class=" -Color -Color-C2">✔ Initialized pipeline</span>
+
+<span class=" -Color -Color-Bold">============================= Training pipeline =============================</span>
+<span class=" -Color -Color-C4">ℹ Pipeline: [&#39;spancat&#39;]</span>
+<span class=" -Color -Color-C4">ℹ Initial learn rate: 0.0005</span>
+E    #       LOSS SPANCAT  SPANS_SC_F  SPANS_SC_P  SPANS_SC_R  SCORE 
+---  ------  ------------  ----------  ----------  ----------  ------
+  0       0        501.80        0.00        0.00        0.00    0.00
+ 10     200       2531.60        0.00        0.00        0.00    0.00
+ 23     400        219.50       80.00      100.00       66.67    0.80
+ 39     600         25.04      100.00      100.00      100.00    1.00
+ 60     800          5.83       80.00      100.00       66.67    0.80
+ 84    1000          2.10      100.00      100.00      100.00    1.00
+114    1200          2.51      100.00      100.00      100.00    1.00
+151    1400          0.53      100.00      100.00      100.00    1.00
+196    1600          0.17      100.00      100.00      100.00    1.00
+249    1800          0.15      100.00      100.00      100.00    1.00
+316    2000          0.13      100.00      100.00      100.00    1.00
+394    2200          0.05      100.00      100.00      100.00    1.00
+494    2400          0.07      100.00      100.00      100.00    1.00
+^C
+
+Aborted!
+</pre></div>
+</div>
+</div>
+</div>
+<p>After training is complete, the best and last trained model will be saved in the <code class="docutils literal notranslate"><span class="pre">model-best</span></code> and <code class="docutils literal notranslate"><span class="pre">model-last</span></code> folders, respectively, within <code class="docutils literal notranslate"><span class="pre">sctraining</span></code>.</p>
+</section>
+<section id="generating-predictions">
+<h2>Generating Predictions<a class="headerlink" href="#generating-predictions" title="Link to this heading">#</a></h2>
+<p>Now that we have trained a new model, we can load the model to generate predictions on unseen text. To do so, we reference the trained model file and invoke ChemREL’s <code class="docutils literal notranslate"><span class="pre">predict</span> <span class="pre">span</span></code> command, as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>chemrel<span class="w"> </span>predict<span class="w"> </span>span<span class="w"> </span>./sctraining/model-best<span class="w"> </span><span class="s2">&quot;The polymer Ge2Sb2Te5 had transition temperature Tg = 398 K&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>┏━━━┳━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━┓
+┃<span class=" -Color -Color-Bold"> # </span>┃<span class=" -Color -Color-Bold"> Span      </span>┃<span class=" -Color -Color-Bold"> Label   </span>┃<span class=" -Color -Color-Bold"> Confidence </span>┃
+┡━━━╇━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━┩
+│ 1 │ Ge2Sb2Te5 │ POLYMER │ 0.99874985 │
+│ 2 │ 398 K     │ TG      │ 0.9999907  │
+└───┴───────────┴─────────┴────────────┘
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, the prediction functionality can be invoked via code by importing the <code class="docutils literal notranslate"><span class="pre">chemrel.functions.predict</span></code> submodule, as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemrel.functions</span> <span class="kn">import</span> <span class="n">predict</span>
+
+<span class="n">predict</span><span class="o">.</span><span class="n">predict_span</span><span class="p">(</span><span class="s2">&quot;sctraining/model-best&quot;</span><span class="p">,</span> <span class="s2">&quot;The polymer Ge2Sb2Te5 had transition temperature Tg = 398 K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;POLYMER&#39;: [(&#39;Ge2Sb2Te5&#39;, 0.99874985)], &#39;TG&#39;: [(&#39;398 K&#39;, 0.9999907)]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nice work! You have successfully trained your first ChemREL extraction model. To view the full CLI documentation for ChemREL, and to learn about ChemREL’s additional functionality such as how to train relation extraction and transfer learning models, see the CLI Reference page <a class="reference external" href="https://peesegroup.github.io/ChemREL/cli.html">here</a>.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="predict_demo.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Prediction Functions Demo</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, PEESE.
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Span Categorization Demo: Glass Transition Temperature</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#data-preparation">Data Preparation</a></li>
+<li><a class="reference internal" href="#labeling-with-prodigy">Labeling with Prodigy</a><ul>
+<li><a class="reference internal" href="#prodigy-installation">Prodigy Installation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#annotating-spans">Annotating Spans</a></li>
+<li><a class="reference internal" href="#training-a-new-model">Training a New Model</a></li>
+<li><a class="reference internal" href="#generating-predictions">Generating Predictions</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=1ed6394b"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

@@ -29,5 +29,6 @@ functions_index
 :hidden:
 :caption: Example Notebooks
 
-notebooks/predict
+notebooks/predict_demo
+notebooks/spancat_demo
 ```
