@@ -35,7 +35,7 @@ Any alterations to the models, datasets, or functions included with ChemREL must
 @article{doi,
   author = {Alshehri, Abdulelah S. and Horstmann, Kai A. and You, Fengqi},
   title = {A Versatile Deep Learning Pipeline for Transferable Chemical Data Extraction},
-  journal = {Submitted to JACS Au},
+  journal = {Submitted to Journal of Chemical Information and Modeling},
   volume = {n/a},
   number = {n/a},
   pages = {n/a},
